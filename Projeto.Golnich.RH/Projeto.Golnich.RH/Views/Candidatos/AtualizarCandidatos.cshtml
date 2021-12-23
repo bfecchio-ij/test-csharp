@@ -1,0 +1,111 @@
+﻿@model Projeto.Golnich.RH.Models.CandidatoViewModel
+@{
+    ViewBag.Title = "Atualizar Candidato";
+}
+
+
+<div class="alert alert-info">
+    <div align="center">
+        <h2 class="panel-title">  <i>Atualizar Candidato</i></h2>
+    </div>
+</div>
+
+<body>
+    @Html.HiddenFor(l => l.Id)
+    @Html.HiddenFor(l => l.Ds_Data)
+    <div class="panel-body">
+        <fieldset>
+            <legend id="titulo1"> <strong>Dados do Candidato </strong></legend>
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="">
+                        Nome do Candidato:
+                    </label>
+                    @Html.TextBoxFor(l => l.Nome, new { @class = "form-control", @placeholder = "Nome do Candidato" })
+                </div>
+                <div class="col-md-4">
+                    <label class="">
+                        Email do Candidato:
+                    </label>
+                    @Html.TextBoxFor(l => l.Email, new { @class = "form-control", @placeholder = "Email do Candidato", @disabled = "disabled" })
+                </div>
+                <div class="col-md-3">
+
+
+                    <label>Data de nascimento:</label>
+                    <input type="date" name="data" id="DataNascimento" min="2000-01-01" class="form-control" required />
+                    <p><span style="color:#ff0000;"></span></p>
+
+                </div>
+            </div>
+            <br />
+            <div class="row">
+
+                <div class="col-md-4">
+                    <button class="btn btn-danger" type="button" id="btnVoltar">
+                        <i class="fa fa-arrow" aria-hidden="true"></i>
+                        Voltar
+                    </button>
+                    <button class="btn btn-success" type="button" id="btnAlterar">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Alterar
+                    </button>
+                    <button class="btn btn-info" type="button" id="btnNovo">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Novo
+                    </button>
+
+                </div>
+            </div>
+
+        </fieldset>
+    </div>
+</body>
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#btnNovo").hide();
+            $("#DataNascimento").val($("#Ds_Data").val())
+        });
+
+        $("#btnAlterar").click(function () {
+            var model = {
+                Id: $("#Id").val(),
+                Nome: $("#Nome").val(),
+                Email: $("#Email").val(),
+                DataNascimento: $("#DataNascimento").val()
+            }
+         var URL = '@Url.Action("AtualizarCandidato", "Candidatos")'
+                $.ajax({
+                    url: URL,
+                    type: "POST",
+                    data: model,
+                    success: function (dados) {
+                        if (dados.isSucess == true) {
+                            $("#Nome").prop('disabled', true)
+                            $("#DataNascimento").prop('disabled', true)
+                            $("#btnAlterar").hide();
+                            $("#btnNovo").show();
+                        } else {
+                            ErrorValid(dados);
+                        }
+                        alert(dados.mensagemCallBack)
+                    }
+                });
+        });
+
+        $("#btnNovo").click(function () {
+            $("#btnNovo").hide();
+            $("#btnAlterar").show();
+            $("#Nome").prop('disabled', false)
+            $("#DataNascimento").prop('disabled', false)
+      
+
+        });
+
+        $("#btnVoltar").click(function () {
+            window.location.href = "../Candidatos/DadosCandidatos"
+        });
+    </script>
+}

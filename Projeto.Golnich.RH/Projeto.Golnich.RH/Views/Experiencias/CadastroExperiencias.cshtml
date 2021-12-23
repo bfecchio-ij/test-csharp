@@ -1,0 +1,149 @@
+﻿
+@model Projeto.Golnich.RH.Models.ExperienciaViewModel
+@{
+    ViewBag.Title = "Cadastro de Experiências";
+}
+
+
+<div class="alert alert-info">
+    <div align="center">
+        <h2 class="panel-title">  <i>Cadastro de Experiências </i></h2>
+    </div>
+</div>
+
+
+<body>
+    <div class="panel-body">
+        <fieldset>
+            <legend id="titulo1"> <strong>Cadastrar Experiências </strong></legend>
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="">
+                        Candidatos:
+                    </label>
+                    @Html.DropDownListFor(l => l.IdCandidato, (IEnumerable<SelectListItem>)ViewBag.Candidatos, "Selecione", new { @class = "form-control" })
+                </div>
+                <div class="col-md-3">
+                    <label class="">
+                        Empresa:
+                    </label>
+                    @Html.TextBoxFor(l => l.Empresa, new { @class = "form-control", @placeholder = "Nome da Empresa" })
+                </div>
+
+                <div class="col-md-3">
+                    <label class="">
+                        Cargo:
+                    </label>
+                    @Html.TextBoxFor(l => l.Cargo, new { @class = "form-control", @placeholder = "Nome do Cargo" })
+                </div>
+
+                <div class="col-md-3">
+                    <label class="">
+                        Descriçao do cargo:
+                    </label>
+                    @Html.TextAreaFor(l => l.Descricao, new { @class = "form-control", @placeholder = "Descricao do Cargo" })
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-md-4">
+                    <label class="">
+                        Salario:
+                    </label>
+                    @Html.TextBoxFor(l => l.DS_Salario, new { @class = "form-control", @placeholder = "Valor do salario", @type = "number", @step = "0.01", @name = "quantity", @min = "0.01" })
+                </div>
+                <div class="col-md-3">
+                    <label>Data de inicio:</label>
+                    <input type="date" name="data" id="DataInicio" min="2000-01-01" class="form-control" required />
+                    <p><span style="color:#ff0000;"></span></p>
+
+                </div>
+                <div class="col-md-3">
+                    <label>Data de saida:</label>
+                    <input type="date" name="data" id="DataFim" min="2000-01-01" class="form-control" required />
+                    <p><span style="color:#ff0000;"></span></p>
+
+                </div>
+
+                <div class="col-md-2">
+                    <br />
+                    <label class="">
+                        Emprego Atual:
+                    </label>
+                    @Html.CheckBoxFor(l => l.Atual)
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-md-4">
+                    <br />
+                    <button class="btn btn-danger" type="button" id="btnVoltar">
+                        <i class="fa fa-arrow" aria-hidden="true"></i>
+                        Voltar
+                    </button>
+                    <button class="btn btn-success" type="button" id="btnInserir">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Inserir
+                    </button>
+
+                </div>
+            </div>
+            <br />
+
+        </fieldset>
+    </div>
+</body>
+
+@section Scripts{
+    <script>
+        $("#btnInserir").click(function () {
+            var model = {
+                IdCandidato: $("#IdCandidato").val(),
+                Empresa: $("#Empresa").val(),
+                Cargo: $("#Cargo").val(),
+                Descricao: $("#Descricao").val(),
+                DS_Salario: $("#DS_Salario").val(),
+                DataInicio: $("#DataInicio").val(),
+                DataFinal: $("#DataFim").val(),
+                Atual: $("#Atual").is(':checked')
+            }
+         var URL = '@Url.Action("InserirExperiencia", "Experiencias")'
+                $.ajax({
+                    url: URL,
+                    type: "POST",
+                    data: model,
+                    success: function (dados) {
+
+                        if (dados.isSucess == true) {
+                            $("#IdCandidato").val('')
+                            $("#Empresa").val('')
+                            $("#Cargo").val('')
+                            $("#Descricao").val('')
+                            $("#DS_Salario").val('')
+                            $("#DataInicio").val('')
+                            $("#DataFim").val('')
+                            $("#Atual").is(':checked', false)
+
+                        } else {
+
+                            ErrorValid(dados);
+                        }
+                        alert(dados.mensagemCallback)
+
+                    }
+                });
+        });
+        $("#btnVoltar").click(function () {
+            window.location.href = "../Experiencias/DadosExperiencias"
+        });
+
+        $("#Atual").click(function () {
+            if ($("#Atual").is(':checked')) {
+                $("#DataFim").prop('disabled', true)
+            } else {
+                $("#DataFim").prop('disabled', false)
+            }
+
+        })
+    </script>
+}

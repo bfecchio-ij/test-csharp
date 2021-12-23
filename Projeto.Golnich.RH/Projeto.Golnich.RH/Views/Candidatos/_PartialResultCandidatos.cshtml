@@ -1,0 +1,72 @@
+﻿@using Projeto.Golnich.Domain.Candidatos
+@model List<Candidatos>
+
+@if (Model.Count > 0)
+{
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th> Nome </th>
+                    <th> Email </th>
+                    <th> Data de Nascimento </th>
+                    <th>  </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var Candidato in Model)
+                {
+                    <tr id="@Candidato.IdCandidato" class="hide">
+                        <td> @Candidato.Nome  @(" ")  @Candidato.Sobrenome </td>
+                        <td> @Candidato.Email</td>
+                        <td> @Candidato.DataNascimento.ToString().Substring(0, 10)</td>
+
+                        <td class="text-center">
+                       
+
+                            <button type="button" class="btn btn-warning" title="Atualizar" onclick="Açoes.Atualizar(@Candidato.IdCandidato);">
+                               Atualizar
+                            </button>
+
+                            <button type="button" class="btn btn-danger" title="Deletar" onclick="Açoes.Deletar(@Candidato.IdCandidato);">
+                              Deletar
+                            </button>
+
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <h4 class="text-center">Nenhum registro encontrado.</h4>
+}
+
+<script>
+    var Açoes = {
+        
+        Atualizar(IdCandidato) {
+            window.location.href = "../Candidatos/AtualizarCandidatos?idCandidato=" + IdCandidato;
+        },
+
+        Deletar(IdCandidato) {
+            $.ajax({
+                url: "../Candidatos/DeletarCandidato",
+                type: "GET",
+                data: { IdCandidato: IdCandidato },
+                success: function (dados) {
+                 
+                    $("#divResult").html('');
+                    $("#divResult").html(dados);
+
+                },
+                error: function (erro) {
+                    bootbox.alert(erro);
+                }
+            });
+        },
+    }
+</script>

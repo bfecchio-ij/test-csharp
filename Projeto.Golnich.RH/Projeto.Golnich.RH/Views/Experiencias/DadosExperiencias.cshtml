@@ -1,0 +1,92 @@
+﻿@model Projeto.Golnich.RH.Models.ExperienciaViewModel
+@{
+    ViewBag.Title = "Dados das Experiências";
+}
+
+
+<div class="alert alert-info">
+    <div align="center">
+        <h2 class="panel-title">  <i>Central de experiências </i></h2>
+    </div>
+</div>
+
+<body>
+    <div class="panel-body">
+        <fieldset>
+            <legend id="titulo1"> <strong>Filtros de Pesquisa </strong></legend>
+            <div class="row">
+                <div class="col-md-3">
+                    <label class="">
+                        Empresa:
+                    </label>
+                    @Html.TextBoxFor(l => l.Empresa, new { @class = "form-control", @placeholder = "Nome da Empresa" })
+                </div>
+
+                <div class="col-md-3">
+                    <label class="">
+                        Cargo:
+                    </label>
+                    @Html.TextBoxFor(l => l.Cargo, new { @class = "form-control", @placeholder = "Nome do Cargo" })
+                </div>
+
+                <div class="col-md-3">
+                    <label class="">
+                        Minimo de Salario:
+                    </label>
+                    @Html.TextBoxFor(l => l.DS_MinSalario, new { @class = "form-control", @placeholder = "Valor minimo de salario", @type = "number", @step = "0.01", @name = "quantity", @min = "0.01" })
+                </div>
+                <div class="col-md-3">
+                    <label class="">
+                        Maximo de Salario:
+                    </label>
+                    @Html.TextBoxFor(l => l.DS_MaxSalario, new { @class = "form-control", @placeholder = "Valor maximo de salario", @type = "number", @step = "0.01", @name = "quantity", @min = "0.01" })
+                </div>
+                <div class="col-md-4">
+                    <br />
+                    <button class="btn btn-info" type="button" id="btnPesquisar">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        Pesquisar
+                    </button>
+                    <button class="btn btn-warning" type="button" id="btnCadastrar">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Cadastrar
+                    </button>
+
+                </div>
+            </div>
+            <br />
+            <div class="col-md-12" style="overflow-x:auto">
+                <div id="divResult">
+
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</body>
+@section Scripts{
+    <script>
+        $("#btnCadastrar").click(function () {
+            window.location.href = "../Experiencias/CadastroExperiencias"
+        });
+
+        $("#btnPesquisar").click(function () {
+            var model = {
+                Empresa: $("#Empresa").val(),
+                Cargo: $("#Cargo").val(),
+                DS_MinSalario: $("#DS_MinSalario").val(),
+                DS_MaxSalario: $("#DS_MaxSalario").val()
+            }
+         var URL = '@Url.Action("PesquisarExperiencia", "Experiencias")'
+                $.ajax({
+                    url: URL,
+                    type: "GET",
+                    data: model,
+                    success: function (dados) {
+                        $("#divResult").html(dados);
+                    }
+                });
+        });
+
+
+    </script>
+}

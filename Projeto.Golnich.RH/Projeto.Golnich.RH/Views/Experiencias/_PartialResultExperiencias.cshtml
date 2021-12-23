@@ -1,0 +1,87 @@
+﻿@using Projeto.Golnich.Domain.Experiencias
+@model List<Experiencias>
+
+@if (Model.Count > 0)
+{
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th> Candidato </th>
+                    <th> Empresa </th>
+                    <th> Cargo </th>
+                    <th> Salario </th>
+                    <th> Inicio </th>
+                    <th> Saida </th>
+                    <th>  </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var Experiencia in Model)
+                {
+                    <tr id="@Experiencia.IdExperiencia" class="hide">
+                        <td> @Experiencia.Nome_Candidato</td>
+                        <td> @Experiencia.Empresa</td>
+                        <td> @Experiencia.Cargo</td>
+                        <td> @Experiencia.Salario</td>
+                        <td> @Experiencia.DataInicio.ToString().Substring(0, 10)</td>
+                        @if (@Experiencia.DataSaida == null)
+                        {
+                            <td> Atual </td>
+
+                        }
+                        else
+                        {
+                            <td> @Experiencia.DataSaida.ToString().Substring(0, 10)</td>
+
+                        }
+
+                        <td class="text-center">
+
+
+                            <button type="button" class="btn btn-warning" title="Atualizar" onclick="Açoes.Atualizar(@Experiencia.IdExperiencia);">
+                                Atualizar
+                            </button>
+
+                            <button type="button" class="btn btn-danger" title="Deletar" onclick="Açoes.Deletar(@Experiencia.IdExperiencia);">
+                                Deletar
+                            </button>
+
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+}
+else
+{
+    <h4 class="text-center">Nenhum registro encontrado.</h4>
+}
+<script>
+    var Açoes = {
+
+        Atualizar(IdExperiencia) {
+   
+            window.location.href = "../Experiencias/AlterarExperiencia?idExperiencia=" + IdExperiencia;
+        },
+
+        Deletar(idExperiencia) {
+            $.ajax({
+                url: "../Experiencias/DeletarExperiencia",
+                type: "GET",
+                data: { idExperiencia: idExperiencia },
+                success: function (dados) {
+
+                    $("#divResult").html('');
+                    $("#divResult").html(dados);
+
+                },
+                error: function (erro) {
+                    bootbox.alert(erro);
+                }
+            });
+        },
+    }
+</script>

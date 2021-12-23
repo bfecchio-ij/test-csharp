@@ -1,0 +1,80 @@
+﻿@model Projeto.Golnich.RH.Models.CandidatoViewModel
+@{
+    ViewBag.Title = "Dados dos Candidatos";
+}
+
+
+<div class="alert alert-info">
+    <div align="center">
+        <h2 class="panel-title">  <i>Central de candidatos </i></h2>
+    </div>
+</div>
+
+<body>
+    <div class="panel-body">
+        <fieldset>
+            <legend id="titulo1"> <strong>Filtros de Pesquisa </strong></legend>
+            <div class="row">
+                <div class="col-md-4">
+                    <label class="">
+                        Nome:
+                    </label>
+                    @Html.TextBoxFor(l => l.Nome, new { @class = "form-control", @placeholder = "Nome do Candidato" })
+                </div>
+
+                <div class="col-md-4">
+                    <label class="">
+                        Email do Candidato:
+                    </label>
+                    @Html.TextBoxFor(l => l.Email, new { @class = "form-control", @placeholder = "Email do Candidato" })
+                </div>
+
+
+                <div class="col-md-4">
+                    <br />
+                    <button class="btn btn-info" type="button" id="btnPesquisar">
+                        <i class="fa fa-search" aria-hidden="true"></i>
+                        Pesquisar
+                    </button>
+                    <button class="btn btn-warning" type="button" id="btnCadastrar">
+                        <i class="fa fa-plus" aria-hidden="true"></i>
+                        Cadastrar
+                    </button>
+
+                </div>
+            </div>
+            <br />
+            <div class="col-md-12" style="overflow-x:auto">
+                <div id="divResult">
+
+                </div>
+            </div>
+        </fieldset>
+    </div>
+</body>
+
+@section Scripts{
+    <script>
+        $("#btnCadastrar").click(function () {
+            window.location.href = "../Candidatos/CadastroCandidatos"
+        });
+
+        $("#btnPesquisar").click(function () {
+            var model = {
+                Nome: $("#Nome").val(),
+                Email: $("#Email").val(),
+            }
+         var URL = '@Url.Action("PesquisarCandidatos", "Candidatos")'
+                $.ajax({
+                    url: URL,
+                    type: "GET",
+                    data: model,
+                    success: function (dados) {
+                        $("#divResult").html(dados);
+                    }
+                });
+        });
+
+
+    </script>
+}
