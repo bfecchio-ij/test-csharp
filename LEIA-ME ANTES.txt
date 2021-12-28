@@ -1,0 +1,7 @@
+Subi no heroku (Em docker) o front e o back. Segue os links:
+
+Back-end
+https://api-infojobs.herokuapp.com/
+
+Front-end
+https://front-info.herokuapp.com/
