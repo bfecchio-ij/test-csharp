@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using test_CSharp.Interfaces;
+using test_CSharp.Interfaces.Services;
 using test_CSharp.Models;
 
 namespace test_CSharp.Controllers
@@ -9,17 +10,43 @@ namespace test_CSharp.Controllers
     public class CandidateController : ControllerBase
     {
         private readonly ICandidateService _service;
+        private readonly ICandidateExperienceService _experienceService;
 
-        public CandidateController(ICandidateService service)
+        public CandidateController(ICandidateService service, ICandidateExperienceService experienceService)
         {
             _service = service;
+            _experienceService = experienceService;
         }
         [HttpGet]
         public async Task<ActionResult<List<Candidate>>> GetCandidatesAsync()
         {
             try
             {
-                return Ok(await _service.GetCandidatesAsync());
+                var candidates = await _service.GetCandidatesAsync();
+                return Ok(
+
+                    candidates.Select(x => new
+                    {
+                        x.IdCandidate,
+                        x.Name,
+                        x.Surname,
+                        x.Email,
+                        x.InsertDate,
+                        x.ModifyDate,
+                        Experiences = x.Experiences.Select(x => new
+                        {
+                            x.IdCandidateExperience,
+                            x.Company,
+                            x.Job,
+                            x.Description,
+                            x.Salary,
+                            x.BeginDate,
+                            x.EndDate,
+                            x.InsertDate,
+                            x.ModifyDate
+
+                        })
+                    }));
 
             }
             catch (Exception ex)
@@ -34,6 +61,7 @@ namespace test_CSharp.Controllers
             try
             {
                 var candidate = await _service.GetCandidateByIdAsync(id);
+                candidate.Experiences = await _experienceService.GetExperiencesAsync(id);
 
                 if (candidate != null)
                     return Ok(candidate);

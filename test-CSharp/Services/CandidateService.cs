@@ -7,28 +7,35 @@ namespace test_CSharp.Services
     public class CandidateService : ICandidateService
     {
         private readonly ICandidateRepository _repository;
+        private readonly ICandidateExperienceRepository _experienceRepository;
 
-        public CandidateService(ICandidateRepository repository)
+        public CandidateService(ICandidateRepository repository, ICandidateExperienceRepository experienceRepository)
         {
             _repository = repository;
+            _experienceRepository = experienceRepository;
         }
 
         public async Task<List<Candidate>> GetCandidatesAsync()
         {
-            return await _repository.GetCandidatesAsync();
+            var candidates = await _repository.GetCandidatesAsync();
+
+            foreach (Candidate c in candidates)
+                c.Experiences = await _experienceRepository.GetExperiencesAsync(c.IdCandidate);
+
+            return candidates;
         }
 
         public async Task<Candidate> GetCandidateByIdAsync(int id)
         {
-            return await _repository.GetCandidateByIdAsync(id);
+            var candidate = await _repository.GetCandidateByIdAsync(id);
+            candidate.Experiences = await _experienceRepository.GetExperiencesAsync(candidate.IdCandidate);
+            return candidate;
         }
 
         public async Task AddCandidate(Candidate candidate)
         {
-            //Validate
             await _repository.AddCandidate(candidate);
             await _repository.SaveChangesAsync();
-
         }
 
         public async Task RemoveCandidate(int id)
