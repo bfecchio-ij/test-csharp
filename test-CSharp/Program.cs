@@ -1,12 +1,14 @@
 using Microsoft.EntityFrameworkCore;
 using test_CSharp.Data;
+using test_CSharp.Interfaces;
+using test_CSharp.Interfaces.Repositories;
+using test_CSharp.Repositories;
+using test_CSharp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-
+// DbContext
 builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
@@ -15,10 +17,13 @@ builder.Services.AddDbContext<DataContext>(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Data Context
+// Add Services
 
+builder.Services.AddTransient<ICandidateRepository, CandidateRepository>();
 
+//Add Repositories
 
+builder.Services.AddScoped<ICandidateService, CandidateService>();
 
 var app = builder.Build();
 
