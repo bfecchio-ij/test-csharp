@@ -1,13 +1,17 @@
 global using test_CSharp.Data;
+using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using test_CSharp.Interfaces;
 using test_CSharp.Interfaces.Repositories;
+using test_CSharp.Models;
 using test_CSharp.Repositories;
 using test_CSharp.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
+//Fluent validation
+builder.Services.AddControllers().AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<Candidate>());
 // DbContext
 builder.Services.AddDbContext<DataContext>(options =>
 {

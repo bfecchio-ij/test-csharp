@@ -16,9 +16,8 @@ namespace test_CSharp.Models
         public string Surname { get; set; } = string.Empty;
 
         [MaxLength(250)]
-        [Required(ErrorMessage = "Email is required")]
+        [Required]
         public string Email { get; set; } = string.Empty;
-        [Required(ErrorMessage = "Insert date is required")]
         public DateTime InsertDate { get; set; } = DateTime.Now;
         public DateTime? ModifyDate { get; set; }
 
