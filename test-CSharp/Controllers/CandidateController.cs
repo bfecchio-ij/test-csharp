@@ -28,6 +28,39 @@ namespace test_CSharp.Controllers
             }
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<List<Candidate>>> GetCandidateByIdAsync(int id)
+        {
+            try
+            {
+                var candidate = await _service.GetCandidateByIdAsync(id);
+
+                if (candidate != null)
+                    return Ok(candidate);
+                else
+                    return BadRequest("Candidate not found");
+
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AddCandidate(Candidate candidate)
+        {
+            try
+            {
+                await _service.AddCandidate(candidate);
+                return Ok("Candidate added successfully");
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
 
     }
 }

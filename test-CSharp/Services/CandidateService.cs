@@ -17,5 +17,18 @@ namespace test_CSharp.Services
         {
             return await _repository.GetCandidatesAsync();
         }
+
+        public async Task<Candidate> GetCandidateByIdAsync(int id)
+        {
+            return await _repository.GetCandidateByIdAsync(id);
+        }
+
+        public async Task AddCandidate(Candidate candidate)
+        {
+            //Validate
+            await _repository.AddCandidate(candidate);
+            await _repository.SaveChangesAsync();
+
+        }
     }
 }
