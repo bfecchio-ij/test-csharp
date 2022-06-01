@@ -14,10 +14,20 @@ namespace test_CSharp.Controllers
         {
             _service = service;
         }
-        public async Task<ActionResult<List<Candidate>>> GetCandidates()
+        [HttpGet]
+        public async Task<ActionResult<List<Candidate>>> GetCandidatesAsync()
         {
-            return _service.GetCandidates();
+            try
+            {
+                return Ok(await _service.GetCandidatesAsync());
 
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
+
+
     }
 }

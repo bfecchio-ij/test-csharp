@@ -1,5 +1,5 @@
+global using test_CSharp.Data;
 using Microsoft.EntityFrameworkCore;
-using test_CSharp.Data;
 using test_CSharp.Interfaces;
 using test_CSharp.Interfaces.Repositories;
 using test_CSharp.Repositories;
@@ -13,6 +13,7 @@ builder.Services.AddDbContext<DataContext>(options =>
 {
     options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
+
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();

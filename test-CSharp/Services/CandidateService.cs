@@ -13,9 +13,9 @@ namespace test_CSharp.Services
             _repository = repository;
         }
 
-        public List<Candidate> GetCandidates()
+        public async Task<List<Candidate>> GetCandidatesAsync()
         {
-            return _repository.GetCandidates();
+            return await _repository.GetCandidatesAsync();
         }
     }
 }

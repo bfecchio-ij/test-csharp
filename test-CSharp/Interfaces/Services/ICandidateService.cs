@@ -4,6 +4,6 @@ namespace test_CSharp.Interfaces
 {
     public interface ICandidateService
     {
-        List<Candidate> GetCandidates();
+        Task<List<Candidate>> GetCandidatesAsync();
     }
 }
