@@ -1,5 +1,6 @@
 ﻿using test_CSharp.Interfaces;
 using test_CSharp.Interfaces.Repositories;
+using test_CSharp.Models;
 
 namespace test_CSharp.Services
 {
@@ -12,7 +13,9 @@ namespace test_CSharp.Services
             _repository = repository;
         }
 
-
-
+        public List<Candidate> GetCandidates()
+        {
+            return _repository.GetCandidates();
+        }
     }
 }
