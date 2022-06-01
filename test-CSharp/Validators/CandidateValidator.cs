@@ -3,9 +3,9 @@ using test_CSharp.Models;
 
 namespace test_CSharp.Validators
 {
-    public class AddCandidateValidator : AbstractValidator<Candidate>
+    public class CandidateValidator : AbstractValidator<Candidate>
     {
-        public AddCandidateValidator()
+        public CandidateValidator()
         {
             RuleFor(m => m.Name)
                 .NotEmpty()
