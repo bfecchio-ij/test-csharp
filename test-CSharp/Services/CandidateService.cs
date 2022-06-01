@@ -30,5 +30,16 @@ namespace test_CSharp.Services
             await _repository.SaveChangesAsync();
 
         }
+
+        public async Task RemoveCandidate(int id)
+        {
+            var candidate = await _repository.GetCandidateByIdAsync(id);
+            if (candidate == null)
+                throw new DirectoryNotFoundException("Candidate not found");
+
+            await _repository.RemoveCandidate(candidate);
+            await _repository.SaveChangesAsync();
+
+        }
     }
 }

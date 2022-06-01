@@ -61,6 +61,22 @@ namespace test_CSharp.Controllers
             }
         }
 
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> RemoveCandidate(int id)
+        {
+            try
+            {
+                await _service.RemoveCandidate(id);
+                return Ok(new
+                {
+                    Message = "Candidate Removed Successfully"
+                });
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
 
     }
 }

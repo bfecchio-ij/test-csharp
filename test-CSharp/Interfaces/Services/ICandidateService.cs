@@ -7,5 +7,6 @@ namespace test_CSharp.Interfaces
         Task<List<Candidate>> GetCandidatesAsync();
         Task<Candidate> GetCandidateByIdAsync(int id);
         Task AddCandidate(Candidate candidate);
+        Task RemoveCandidate(int id);
     }
 }

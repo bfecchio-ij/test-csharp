@@ -8,9 +8,11 @@ namespace test_CSharp.Models
     {
         [Key]
         public int IdCandidate { get; set; }
+
         [MaxLength(50)]
         [Required]
         public string Name { get; set; } = string.Empty;
+        
         [MaxLength(150)]
         [Required]
         public string Surname { get; set; } = string.Empty;
