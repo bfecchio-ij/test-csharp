@@ -9,5 +9,6 @@ namespace test_CSharp.Interfaces.Repositories
         Task<Candidate> GetCandidateByIdAsync(int id);
         Task AddCandidate(Candidate candidate);
         Task RemoveCandidate(Candidate candidate);
+        Task<Candidate> UpdateCandidate(Candidate candidate);
     }
 }

@@ -40,5 +40,11 @@ namespace test_CSharp.Repositories
             _context.Remove(candidate);
             return;
         }
+
+        public async Task<Candidate> UpdateCandidate(Candidate candidate)
+        {
+            _context.Update(candidate);
+            return candidate;
+        }
     }
 }

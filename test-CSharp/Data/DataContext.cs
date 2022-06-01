@@ -7,6 +7,7 @@ namespace test_CSharp.Data
     {
         public DataContext(DbContextOptions<DataContext> options) : base(options) { }
         public DbSet<Candidate> Candidates { get; set; }
+        public DbSet<CandidateExperience> CandidateExperiences { get; set; }
 
     }
 }

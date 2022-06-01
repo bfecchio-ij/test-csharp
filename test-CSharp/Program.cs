@@ -3,6 +3,7 @@ using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
 using test_CSharp.Interfaces;
 using test_CSharp.Interfaces.Repositories;
+using test_CSharp.Interfaces.Services;
 using test_CSharp.Models;
 using test_CSharp.Repositories;
 using test_CSharp.Services;
@@ -25,10 +26,12 @@ builder.Services.AddSwaggerGen();
 // Add Services
 
 builder.Services.AddTransient<ICandidateRepository, CandidateRepository>();
+builder.Services.AddTransient<ICandidateExperienceRepository, CandidateExperienceRepository>();
 
 //Add Repositories
 
 builder.Services.AddScoped<ICandidateService, CandidateService>();
+builder.Services.AddScoped<ICandidateExperienceService, CandidateExperienceService>();
 
 var app = builder.Build();
 

@@ -41,5 +41,22 @@ namespace test_CSharp.Services
             await _repository.SaveChangesAsync();
 
         }
+
+        public async Task<Candidate> UpdateCandidate(Candidate candidate)
+        {
+            var candidateToUpdate = await _repository.GetCandidateByIdAsync(candidate.IdCandidate);
+            if (candidateToUpdate == null)
+                throw new DirectoryNotFoundException("Candidate not found");
+
+            candidateToUpdate.Name = candidate.Name;
+            candidateToUpdate.Surname = candidate.Surname;
+            candidateToUpdate.Email = candidate.Email;
+            candidateToUpdate.ModifyDate = DateTime.Now;
+
+            await _repository.UpdateCandidate(candidateToUpdate);
+            await _repository.SaveChangesAsync();
+
+            return candidateToUpdate;
+        }
     }
 }

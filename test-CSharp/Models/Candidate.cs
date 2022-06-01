@@ -12,7 +12,7 @@ namespace test_CSharp.Models
         [MaxLength(50)]
         [Required]
         public string Name { get; set; } = string.Empty;
-        
+
         [MaxLength(150)]
         [Required]
         public string Surname { get; set; } = string.Empty;
@@ -22,6 +22,6 @@ namespace test_CSharp.Models
         public string Email { get; set; } = string.Empty;
         public DateTime InsertDate { get; set; } = DateTime.Now;
         public DateTime? ModifyDate { get; set; }
-
+        public List<CandidateExperience> Experiences { get; set; } = new List<CandidateExperience>();
     }
 }

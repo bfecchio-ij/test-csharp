@@ -78,5 +78,19 @@ namespace test_CSharp.Controllers
             }
         }
 
+        [HttpPut]
+        public async Task<ActionResult<Candidate>> UpdateCandidate(Candidate candidate)
+        {
+            try
+            {
+                await _service.UpdateCandidate(candidate);
+
+                return Ok(candidate);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }
