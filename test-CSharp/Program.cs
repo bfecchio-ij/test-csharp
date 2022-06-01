@@ -1,6 +1,7 @@
 global using test_CSharp.Data;
 using FluentValidation.AspNetCore;
 using Microsoft.EntityFrameworkCore;
+using System.Text.Json.Serialization;
 using test_CSharp.Interfaces;
 using test_CSharp.Interfaces.Repositories;
 using test_CSharp.Interfaces.Services;
@@ -14,6 +15,8 @@ builder.Services.AddControllers();
 //Fluent validation
 builder.Services.AddControllers().AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<Candidate>());
 builder.Services.AddControllers().AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<CandidateExperience>());
+builder.Services.AddControllers().AddJsonOptions(x =>
+                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 // DbContext
 builder.Services.AddDbContext<DataContext>(options =>
 {

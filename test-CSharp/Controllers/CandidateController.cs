@@ -24,7 +24,6 @@ namespace test_CSharp.Controllers
             {
                 var candidates = await _service.GetCandidatesAsync();
                 return Ok(
-
                     candidates.Select(x => new
                     {
                         x.IdCandidate,
@@ -35,7 +34,6 @@ namespace test_CSharp.Controllers
                         x.ModifyDate,
                         Experiences = x.Experiences.Select(x => new
                         {
-                            x.IdCandidateExperience,
                             x.Company,
                             x.Job,
                             x.Description,
@@ -61,10 +59,31 @@ namespace test_CSharp.Controllers
             try
             {
                 var candidate = await _service.GetCandidateByIdAsync(id);
-                candidate.Experiences = await _experienceService.GetExperiencesAsync(id);
 
                 if (candidate != null)
-                    return Ok(candidate);
+                {
+                    return Ok(
+                        new
+                        {
+                            candidate.IdCandidate,
+                            candidate.Name,
+                            candidate.Surname,
+                            candidate.Email,
+                            candidate.InsertDate,
+                            candidate.ModifyDate,
+                            Experiences = candidate.Experiences.Select(x => new
+                            {
+                                x.Company,
+                                x.Job,
+                                x.Description,
+                                x.Salary,
+                                x.BeginDate,
+                                x.EndDate,
+                                x.InsertDate,
+                                x.ModifyDate
+                            })
+                        });
+                }
                 else
                     return BadRequest("Candidate not found");
 
