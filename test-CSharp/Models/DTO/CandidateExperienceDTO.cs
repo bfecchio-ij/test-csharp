@@ -5,6 +5,7 @@ namespace test_CSharp.Models.DTO
     public class CandidateExperienceDTO
     {
         public int IdCandidate { get; set; }
+        public int IdCandidateExperience { get; set; }
         public string Company { get; set; } = string.Empty;
         public string Job { get; set; } = string.Empty;
         public string Description { get; set; } = string.Empty;

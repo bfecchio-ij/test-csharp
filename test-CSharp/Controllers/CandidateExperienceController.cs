@@ -59,5 +59,34 @@ namespace test_CSharp.Controllers
             }
         }
 
+        [HttpPut]
+        public async Task<ActionResult> UpdateExperienceAsync(CandidateExperienceDTO candidateExperienceDTO)
+        {
+            try
+            {
+                await _service.UpdateExperienceAsync(candidateExperienceDTO);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> RemoveExperience(int id)
+        {
+            try
+            {
+                await _service.RemoveExperienceAsync(id);
+                return Ok();
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+
     }
 }

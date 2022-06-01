@@ -25,7 +25,26 @@ namespace test_CSharp.Repositories
         {
             return await _context.CandidateExperiences.Where(e => e.IdCandidate == idCandidate).ToListAsync();
         }
+        public async Task<CandidateExperience> GetExperienceToUpdateAsync(int idExperience, int idCandidate)
+        {
+            return await _context.CandidateExperiences.Where(e => e.IdCandidateExperience == idExperience && e.IdCandidate == idCandidate).FirstOrDefaultAsync();
+        }
 
+        public Task UpdateExperienceAsync(CandidateExperience experience)
+        {
+            _context.CandidateExperiences.Update(experience);
+            return Task.CompletedTask;
+        }
 
+        public Task RemoveExperienceAsync(CandidateExperience experience)
+        {
+            _context.CandidateExperiences.Remove(experience);
+            return Task.CompletedTask;
+        }
+
+        public async Task<CandidateExperience> GetExperienceByIdAsync(int idExperience)
+        {
+            return await _context.CandidateExperiences.FirstOrDefaultAsync(x => x.IdCandidateExperience == idExperience);
+        }
     }
 }
