@@ -2,6 +2,7 @@
 using test_CSharp.Interfaces.Services;
 using test_CSharp.Models;
 using test_CSharp.Models.DTO;
+using test_CSharp.Validators;
 
 namespace test_CSharp.Services
 {
@@ -28,8 +29,21 @@ namespace test_CSharp.Services
                 ModifyDate = experienceDTO.ModifyDate
             };
 
+            // var validator = new CandidateExperienceValidator();
+            // var validation = validator.Validate(experience);
+            // if (validation.IsValid)
+            // {
+            //     await _repository.AddExperience(experience);
+            //     await _repository.SaveChangesAsync();
+            // }
+            // else
+            // {
+            //     throw new BadHttpRequestException(validation.ToString());
+            // }
+
             await _repository.AddExperience(experience);
             await _repository.SaveChangesAsync();
+
         }
 
         public async Task RemoveExperienceAsync(int idCandidate)
@@ -58,9 +72,9 @@ namespace test_CSharp.Services
             if (experienceToUpdate == null)
                 throw new DirectoryNotFoundException("Experience not found");
 
-            experienceToUpdate.Company = experience.Company == null ? experienceToUpdate.Company : experience.Company;
-            experienceToUpdate.Job = experience.Job == null ? experienceToUpdate.Job : experience.Job;
-            experienceToUpdate.Description = experience.Description == null ? experienceToUpdate.Description : experience.Description;
+            experienceToUpdate.Company = string.IsNullOrEmpty(experience.Company) ? experienceToUpdate.Company : experience.Company;
+            experienceToUpdate.Job = string.IsNullOrEmpty(experience.Job) ? experienceToUpdate.Job : experience.Job;
+            experienceToUpdate.Description = string.IsNullOrEmpty(experience.Description) ? experienceToUpdate.Description : experience.Description;
             experienceToUpdate.Salary = experience.Salary == 0m ? experienceToUpdate.Salary : experience.Salary;
             experienceToUpdate.BeginDate = experience.BeginDate;
             experienceToUpdate.EndDate = experience.EndDate;

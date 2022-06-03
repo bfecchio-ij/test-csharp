@@ -10,12 +10,10 @@ namespace test_CSharp.Controllers
     public class CandidateController : ControllerBase
     {
         private readonly ICandidateService _service;
-        private readonly ICandidateExperienceService _experienceService;
 
         public CandidateController(ICandidateService service, ICandidateExperienceService experienceService)
         {
             _service = service;
-            _experienceService = experienceService;
         }
         [HttpGet]
         public async Task<ActionResult<List<Candidate>>> GetCandidatesAsync()

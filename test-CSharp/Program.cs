@@ -5,16 +5,16 @@ using System.Text.Json.Serialization;
 using test_CSharp.Interfaces;
 using test_CSharp.Interfaces.Repositories;
 using test_CSharp.Interfaces.Services;
-using test_CSharp.Models;
 using test_CSharp.Repositories;
 using test_CSharp.Services;
+using test_CSharp.Validators;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
 //Fluent validation
-builder.Services.AddControllers().AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<Candidate>());
-builder.Services.AddControllers().AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<CandidateExperience>());
+builder.Services.AddControllers().AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<CandidateValidator>());
+builder.Services.AddControllers().AddFluentValidation(config => config.RegisterValidatorsFromAssemblyContaining<CandidateExperienceValidator>());
 builder.Services.AddControllers().AddJsonOptions(x =>
                 x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.IgnoreCycles);
 // DbContext

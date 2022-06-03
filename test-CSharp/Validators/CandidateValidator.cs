@@ -25,6 +25,10 @@ namespace test_CSharp.Validators
                 .MaximumLength(250)
                     .WithMessage("Email length must be less than 250");
 
+            RuleFor(m => m.InsertDate)
+                .NotEmpty()
+                    .WithMessage("Insert date is required");
+
         }
     }
 }
