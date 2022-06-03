@@ -25,6 +25,7 @@ namespace test_CSharp.Services
             return candidates;
         }
 
+
         public async Task<Candidate> GetCandidateByIdAsync(int id)
         {
             var candidate = await _repository.GetCandidateByIdAsync(id);
@@ -34,6 +35,11 @@ namespace test_CSharp.Services
 
         public async Task AddCandidate(Candidate candidate)
         {
+            candidate.Email = candidate.Email.ToLower();
+
+            if (await _repository.EmailBeingUsed(candidate.Email))
+                throw new Exception("This email address is already being used");
+
             await _repository.AddCandidate(candidate);
             await _repository.SaveChangesAsync();
         }
@@ -43,6 +49,7 @@ namespace test_CSharp.Services
             var candidate = await _repository.GetCandidateByIdAsync(id);
             if (candidate == null)
                 throw new DirectoryNotFoundException("Candidate not found");
+
 
             await _repository.RemoveCandidate(candidate);
             await _repository.SaveChangesAsync();
@@ -57,7 +64,7 @@ namespace test_CSharp.Services
 
             candidateToUpdate.Name = candidate.Name;
             candidateToUpdate.Surname = candidate.Surname;
-            candidateToUpdate.Email = candidate.Email;
+            candidateToUpdate.Email = candidate.Email.ToLower();
             candidateToUpdate.ModifyDate = DateTime.Now;
 
             await _repository.UpdateCandidate(candidateToUpdate);

@@ -29,18 +29,6 @@ namespace test_CSharp.Services
                 ModifyDate = experienceDTO.ModifyDate
             };
 
-            // var validator = new CandidateExperienceValidator();
-            // var validation = validator.Validate(experience);
-            // if (validation.IsValid)
-            // {
-            //     await _repository.AddExperience(experience);
-            //     await _repository.SaveChangesAsync();
-            // }
-            // else
-            // {
-            //     throw new BadHttpRequestException(validation.ToString());
-            // }
-
             await _repository.AddExperience(experience);
             await _repository.SaveChangesAsync();
 

@@ -1,5 +1,4 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using test_CSharp.Data;
 using test_CSharp.Interfaces.Repositories;
 using test_CSharp.Models;
 
@@ -12,6 +11,10 @@ namespace test_CSharp.Repositories
         public CandidateRepository(DataContext context)
         {
             _context = context;
+        }
+        public async Task<bool> EmailBeingUsed(string email)
+        {
+            return await _context.Candidates.AnyAsync(c => c.Email == email);
         }
 
         public async Task SaveChangesAsync()
