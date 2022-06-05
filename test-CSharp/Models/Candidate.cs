@@ -22,6 +22,6 @@ namespace test_CSharp.Models
         public string Email { get; set; } = string.Empty;
         public DateTime InsertDate { get; set; } = DateTime.Now;
         public DateTime? ModifyDate { get; set; }
-        public List<CandidateExperience> Experiences { get; set; } = new List<CandidateExperience>(); 
+        public List<CandidateExperience> Experiences { get; set; } = new List<CandidateExperience>();
     }
 }
