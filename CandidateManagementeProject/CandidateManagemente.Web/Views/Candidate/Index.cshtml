@@ -1,0 +1,42 @@
+﻿@model IEnumerable<CandidateManagemente.Application.DTO.CandidatesDto>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create"><input type="button" class="btn btn-primary" value="Create New"></a>
+</p>
+<table class="table table-bordered table-responsive table-hover">  
+    <tr>  
+        <th>First Name </th>  
+        <th>Last Name </th>  
+        <th>BirthDate</th> 
+        <th>Email</th>   
+        <th>Actions</th>   
+    </tr>  
+    @foreach (var d in Model)  
+    {  
+        <tr>  
+            <td>@d.Name</td>  
+            <td>@d.Surname</td>  
+            <td>@d.BirthDate</td>  
+            <td>@d.Email</td>
+            <td><a asp-action="Edit" asp-route-id="@d.IdCandidate"><button type="button" class="btn btn-primary">Edit</button></a> 
+                <a asp-action="Details" asp-route-id="@d.IdCandidate"><button type="button" class="btn btn-primary">Details</button></a> 
+                <a asp-action="Delete" asp-route-id="@d.IdCandidate"><button type="button" class="btn btn-primary">Delete</button></a>
+            </td>
+        </tr>  
+    }  
+</table> 
+
+<script type="module">
+  import { Toast } from 'bootstrap.esm.min.js'
+
+  Array.from(document.querySelectorAll('.toast'))
+    .forEach(toastNode => new Toast(toastNode))
+</script>
+
+
