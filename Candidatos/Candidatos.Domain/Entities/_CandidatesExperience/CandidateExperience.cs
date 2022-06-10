@@ -1,8 +1,10 @@
 ﻿using System;
+using Candidatos.Domain.Entities._Base;
+using Candidatos.Domain.Entities._Candidate;
 
-namespace Candidatos.Domain.Entities
+namespace Candidatos.Domain.Entities._CandidateExperience
 {
-    public class CandidateExperience: EntityBase
+    public class CandidateExperience : EntityBase
     {
         public int IdCandidateExperience { get; set; }
         public string Company { get; set; }

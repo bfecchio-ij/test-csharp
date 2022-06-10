@@ -2,7 +2,7 @@
 
 namespace Candidatos.Domain.Interfaces.Repositories
 {
-    public interface IServiceBase<entity> where entity : class
+    public interface IRepositoryBase<entity> where entity : class
     {
         IEnumerable<entity> GetAll();
         entity GetById(int id);

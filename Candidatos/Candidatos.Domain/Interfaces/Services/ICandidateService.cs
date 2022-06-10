@@ -1,4 +1,4 @@
-﻿using Candidatos.Domain.Entities;
+﻿using Candidatos.Domain.Entities._Candidate;
 
 namespace Candidatos.Domain.Interfaces.Services
 {

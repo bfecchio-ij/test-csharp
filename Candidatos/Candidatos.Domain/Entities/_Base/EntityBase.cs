@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace Candidatos.Domain.Entities
+namespace Candidatos.Domain.Entities._Base
 {
     public class EntityBase
     {

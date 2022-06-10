@@ -1,6 +1,6 @@
-﻿using Candidatos.Domain.Entities;
+﻿using Candidatos.Domain.Entities._Candidate;
 
 namespace Candidatos.Domain.Interfaces.Repositories
 {
-    public interface ICandidateService : IServiceBase<Candidate> { }
+    public interface ICandidateService : IRepositoryBase<Candidate> { }
 }

@@ -1,6 +1,6 @@
-﻿using Candidatos.Domain.Entities;
+﻿using Candidatos.Domain.Entities._CandidateExperience;
 
 namespace Candidatos.Domain.Interfaces.Repositories
 {
-    public interface ICandidateExperienceService : IServiceBase<CandidateExperience> { }
+    public interface ICandidateExperienceService : IRepositoryBase<CandidateExperience> { }
 }

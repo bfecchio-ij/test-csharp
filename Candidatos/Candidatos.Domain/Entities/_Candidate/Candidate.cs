@@ -1,9 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
+using Candidatos.Domain.Entities._Base;
+using Candidatos.Domain.Entities._CandidateExperience;
 
-namespace Candidatos.Domain.Entities
+namespace Candidatos.Domain.Entities._Candidate
 {
-    public class Candidate: EntityBase
+    public class Candidate : EntityBase
     {
         public int IdCandidate { get; set; }
         public string Name { get; set; }
