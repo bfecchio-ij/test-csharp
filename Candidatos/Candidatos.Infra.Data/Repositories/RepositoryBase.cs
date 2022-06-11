@@ -4,6 +4,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace Candidatos.Infra.Data.Repositories
 {
@@ -17,27 +18,32 @@ namespace Candidatos.Infra.Data.Repositories
             _context.SaveChanges();
         }
 
-        public IEnumerable<entity> GetAll()
+        public async Task AddAsync(entity obj)
         {
-            return _context.Set<entity>().ToList();
+            await _context.Set<entity>().AddAsync(obj);
         }
 
-        public entity GetById(int id)
+        public async Task<IEnumerable<entity>> GetAllAsync()
         {
-            return _context.Set<entity>().Find(id);
+            return await _context.Set<entity>().ToListAsync();
         }
 
-        public void Remove(entity obj)
+        public async Task<entity> GetByIdAsync(int id)
+        {
+            return await _context.Set<entity>().FindAsync(id);
+        }
+
+        public async Task RemoveAsync(entity obj)
         {
             _context.Set<entity>().Remove(obj);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public void Update(entity obj)
+        public async Task UpdateAsync(entity obj)
         {
             _context.Entry(obj).Property("ModifyDate").CurrentValue = DateTime.UtcNow;
             _context.Entry(obj).State = EntityState.Modified;
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
     }
 }

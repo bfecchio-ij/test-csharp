@@ -1,6 +1,7 @@
 ﻿using Candidatos.Application.Interfaces;
 using Candidatos.Domain.Interfaces.Services;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Candidatos.Application.Implementations
 {
@@ -13,29 +14,29 @@ namespace Candidatos.Application.Implementations
             _serviceBase = service;
         }
 
-        public void Add(entity obj)
+        public async Task AddAsync(entity obj)
         {
-            _serviceBase.Add(obj);
+            await _serviceBase.AddAsync(obj);
         }
 
-        public IEnumerable<entity> GetAll()
+        public async Task<IEnumerable<entity>> GetAllAsync()
         {
-            return _serviceBase.GetAll();
+            return await _serviceBase.GetAllAsync();
         }
 
-        public entity GetById(int id)
+        public async Task<entity> GetByIdAsync(int id)
         {
-            return _serviceBase.GetById(id);
+            return await _serviceBase.GetByIdAsync(id);
         }
 
-        public void Remove(entity obj)
+        public async Task RemoveAsync(entity obj)
         {
-            _serviceBase.Remove(obj);
+            await _serviceBase.RemoveAsync(obj);
         }
 
-        public void Update(entity obj)
+        public async Task UpdateAsync(entity obj)
         {
-            _serviceBase.Update(obj);
+            await _serviceBase.UpdateAsync(obj);
         }
     }
 }

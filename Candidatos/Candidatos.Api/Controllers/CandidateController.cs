@@ -24,7 +24,7 @@ namespace Candidatos.Api.Controllers
         public async Task<IActionResult> Get()
         {
             List<CandidateDTO> candidatesDTO = new List<CandidateDTO>();
-            var c = _candidateAppService.GetAll();
+            var c = await _candidateAppService.GetAllAsync();
             if (c == null) return NoContent();
             
             foreach (var item in c)
@@ -45,7 +45,7 @@ namespace Candidatos.Api.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var c = _candidateAppService.GetById(id);
+            var c = await _candidateAppService.GetByIdAsync(id);
             if (c == null) return NoContent();
             
             var result = new CandidateDTO
@@ -61,21 +61,21 @@ namespace Candidatos.Api.Controllers
         }
 
         [HttpPost]
-        public void Post([FromBody] Candidate value)
+        public async void Post([FromBody] Candidate value)
         {
-            _candidateAppService.Add(value);
+            await _candidateAppService.AddAsync(value);
         }
 
         [HttpPut("{id}")]
-        public void Put(int id, [FromBody] Candidate value)
+        public async void Put(int id, [FromBody] Candidate value)
         {
-            _candidateAppService.Update(value);
+            await _candidateAppService.UpdateAsync(value);
         }
 
         [HttpDelete("{id}")]
-        public void Delete(int id)
+        public async void Delete(int id)
         {
-            _candidateAppService.Remove(_candidateAppService.GetById(id));
+            await _candidateAppService.RemoveAsync(await _candidateAppService.GetByIdAsync(id));
         }
     }
 }

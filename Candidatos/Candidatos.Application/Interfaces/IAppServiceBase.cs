@@ -1,13 +1,14 @@
 ﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Candidatos.Application.Interfaces
 {
     public interface IAppServiceBase<entity> where entity : class
     {
-        void Add(entity obj);
-        void Update(entity obj);
-        void Remove(entity obj);
-        IEnumerable<entity> GetAll();
-        entity GetById(int id);
+        Task<IEnumerable<entity>> GetAllAsync();
+        Task<entity> GetByIdAsync(int id);
+        Task UpdateAsync(entity obj);
+        Task RemoveAsync(entity obj);
+        Task AddAsync(entity obj);
     }
 }

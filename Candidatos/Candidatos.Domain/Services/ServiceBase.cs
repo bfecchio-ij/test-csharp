@@ -1,6 +1,7 @@
 ﻿using Candidatos.Domain.Interfaces.Repositories;
 using Candidatos.Domain.Interfaces.Services;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace Candidatos.Domain.Services
 {
@@ -13,29 +14,29 @@ namespace Candidatos.Domain.Services
             _repository = repository;
         }
 
-        public void Add(entity obj)
+        public async Task<IEnumerable<entity>> GetAllAsync()
         {
-            _repository.Add(obj);
+            return await _repository.GetAllAsync();
         }
 
-        public IEnumerable<entity> GetAll()
+        public async Task<entity> GetByIdAsync(int id)
         {
-            return _repository.GetAll();
+            return await _repository.GetByIdAsync(id);
         }
 
-        public entity GetById(int id)
+        public async Task RemoveAsync(entity obj)
         {
-            return _repository.GetById(id);
+            await _repository.RemoveAsync(obj);
         }
 
-        public void Remove(entity obj)
+        public async Task UpdateAsync(entity obj)
         {
-            _repository.Remove(obj);
+            await _repository.UpdateAsync(obj);
         }
 
-        public void Update(entity obj)
+        async Task IServiceBase<entity>.AddAsync(entity obj)
         {
-            _repository.Update(obj);
+            await _repository.AddAsync(obj);
         }
     }
 }
