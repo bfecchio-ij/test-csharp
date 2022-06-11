@@ -1,10 +1,12 @@
 ﻿using System;
-using Candidatos.Domain.Entities._Base;
-using Candidatos.Domain.Entities._Candidate;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
-namespace Candidatos.Domain.Entities._CandidateExperience
+namespace Candidatos.Api.DTO
 {
-    public class CandidateExperience : EntityBase
+    public class CandidateExperienceDTO
     {
         public int IdCandidateExperience { get; set; }
         public string Company { get; set; }
@@ -13,9 +15,10 @@ namespace Candidatos.Domain.Entities._CandidateExperience
         public decimal Salary { get; set; }
         public DateTime BeginDate { get; set; }
         public DateTime? EndDate { get; set; }
-
-        // relationship
         public int IdCandidate { get; set; }
-        public virtual Candidate Candidate { get; set; }
+        public string Name { get; set; }
+        public string Surname { get; set; }
+        public DateTime BirthDate { get; set; }
+        public string Email { get; set; }
     }
 }

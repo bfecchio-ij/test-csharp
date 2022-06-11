@@ -2,5 +2,5 @@
 
 namespace Candidatos.Domain.Interfaces.Repositories
 {
-    public interface ICandidateExperienceService : IRepositoryBase<CandidateExperience> { }
+    public interface ICandidateExperienceRepository : IRepositoryBase<CandidateExperience> { }
 }

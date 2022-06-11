@@ -1,12 +1,16 @@
 ﻿using Candidatos.Domain.Entities._CandidateExperience;
 using Candidatos.Domain.Interfaces.Repositories;
+using Candidatos.Domain.Interfaces.Services;
 
 namespace Candidatos.Domain.Services
 {
-    public class CandidateExperienceService : ServiceBase<CandidateExperience>
+    public class CandidateExperienceService : ServiceBase<CandidateExperience>, ICandidateExperienceService
     {
-        public CandidateExperienceService(IRepositoryBase<CandidateExperience> repository) : base(repository)
+        private readonly ICandidateExperienceRepository _repository;
+
+        public CandidateExperienceService(ICandidateExperienceRepository repository) : base(repository)
         {
+            _repository = repository;
         }
     }
 }

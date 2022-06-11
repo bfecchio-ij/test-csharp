@@ -2,5 +2,7 @@
 
 namespace Candidatos.Domain.Interfaces.Repositories
 {
-    public interface ICandidateService : IRepositoryBase<Candidate> { }
+    public interface ICandidateRepository : IRepositoryBase<Candidate>
+    {
+    }
 }

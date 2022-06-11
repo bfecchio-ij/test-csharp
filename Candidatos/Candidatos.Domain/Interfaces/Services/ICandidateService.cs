@@ -2,5 +2,7 @@
 
 namespace Candidatos.Domain.Interfaces.Services
 {
-    public interface ICandidateService : IServiceBase<Candidate> { }
+    public interface ICandidateService : IServiceBase<Candidate>
+    {
+    }
 }
