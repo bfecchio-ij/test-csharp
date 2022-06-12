@@ -1,4 +1,4 @@
-﻿using Candidatos.Domain.Entities._CandidateExperience;
+﻿using Candidatos.Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 

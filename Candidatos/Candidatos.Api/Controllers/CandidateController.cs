@@ -1,6 +1,6 @@
-﻿using Candidatos.Api.DTO;
+﻿using Candidatos.Application.DTO;
 using Candidatos.Application.Interfaces;
-using Candidatos.Domain.Entities._Candidate;
+using Candidatos.Domain.Entities;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -13,39 +13,25 @@ namespace Candidatos.Api.Controllers
     [ApiController]
     public class CandidateController : ControllerBase
     {
-        private readonly ICandidateAppService _candidateAppService;
+        private readonly ICandidateService _candidateService;
 
-        public CandidateController(ICandidateAppService candidateAppService)
+        public CandidateController(ICandidateService candidateAppService)
         {
-            _candidateAppService = candidateAppService;
+            _candidateService = candidateAppService;
         }
 
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            List<CandidateDTO> candidatesDTO = new List<CandidateDTO>();
-            var c = await _candidateAppService.GetAllAsync();
+            var c = await _candidateService.GetAllAsync();
             if (c == null) return NoContent();
-            
-            foreach (var item in c)
-            {
-                candidatesDTO.Add(new CandidateDTO
-                {
-                    IdCandidate = item.IdCandidate,
-                    Name = item.Name,
-                    Email = item.Email,
-                    Surname = item.Surname,
-                    BirthDate = item.BirthDate,
-                });
-            }
-            
-            return Ok(candidatesDTO);
+            return Ok(c);
         }
 
         [HttpGet("{id}")]
         public async Task<IActionResult> Get(int id)
         {
-            var c = await _candidateAppService.GetByIdAsync(id);
+            var c = await _candidateService.GetByIdAsync(id);
             if (c == null) return NoContent();
             
             var result = new CandidateDTO
@@ -61,21 +47,21 @@ namespace Candidatos.Api.Controllers
         }
 
         [HttpPost]
-        public async void Post([FromBody] Candidate value)
+        public async void Post([FromBody] CandidateDTO value)
         {
-            await _candidateAppService.AddAsync(value);
+            await _candidateService.CreateAsync(value);
         }
 
         [HttpPut("{id}")]
-        public async void Put(int id, [FromBody] Candidate value)
+        public async void Put(int id, [FromBody] CandidateDTO value)
         {
-            await _candidateAppService.UpdateAsync(value);
+            await _candidateService.UpdateAsync(value);
         }
 
         [HttpDelete("{id}")]
-        public async void Delete(int id)
+        public async void Delete(int? id)
         {
-            await _candidateAppService.RemoveAsync(await _candidateAppService.GetByIdAsync(id));
+           await _candidateService.RemoveAsync(id.Value);
         }
     }
 }

@@ -9,6 +9,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Candidatos.Application\Candidatos.Application.csproj" />
     <ProjectReference Include="..\Candidatos.Infra.IoC\Candidatos.Infra.IoC.csproj" />
   </ItemGroup>
 

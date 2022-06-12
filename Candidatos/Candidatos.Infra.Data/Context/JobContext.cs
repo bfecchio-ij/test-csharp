@@ -1,5 +1,4 @@
-﻿using Candidatos.Domain.Entities._Candidate;
-using Candidatos.Domain.Entities._CandidateExperience;
+﻿using Candidatos.Domain.Entities;
 using Candidatos.Infra.Data.EntityConfig;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,7 +17,7 @@ namespace Candidatos.Infra.Data.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlServer(BuildConnectionString(".", "CandidatesDb"));
-            optionsBuilder.UseLazyLoadingProxies();
+            optionsBuilder.EnableSensitiveDataLogging();
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
