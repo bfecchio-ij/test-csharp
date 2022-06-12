@@ -20,7 +20,7 @@ namespace Candidatos.Application.CQRS.CandidatesExperience.Handlers
         public async Task<CandidateExperience> Handle(CandidateExperienceRemoveCommand request, CancellationToken cancellationToken)
         {
             var candidateExp = _repository.GetByIdAsync(request.IdCandidateExperience).Result;
-            if (candidateExp == null) throw new Exception("the candidate experience does not exist");
+            if (candidateExp == null) return null;
             return await _repository.RemoveAsync(candidateExp);
         }
     }

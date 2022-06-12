@@ -33,7 +33,7 @@ namespace Candidatos.Api.Controllers
         {
             var c = await _candidateService.GetByIdAsync(id);
             if (c == null) return NoContent();
-            
+
             var result = new CandidateDTO
             {
                 IdCandidate = c.IdCandidate,
@@ -53,15 +53,24 @@ namespace Candidatos.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async void Put(int id, [FromBody] CandidateDTO value)
+        public async Task<IActionResult> Put(int id, [FromBody] CandidateDTO value)
         {
+            value.IdCandidate = id;
+            var c = await _candidateService.GetByIdAsync(id);
+            if (c == null) return NoContent();
+            
             await _candidateService.UpdateAsync(value);
+            return Ok();
         }
 
         [HttpDelete("{id}")]
-        public async void Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
-           await _candidateService.RemoveAsync(id.Value);
+            var c = await _candidateService.GetByIdAsync(id);
+            if (c == null) return NoContent();
+
+            await _candidateService.RemoveAsync(id.Value);
+            return Ok();
         }
     }
 }

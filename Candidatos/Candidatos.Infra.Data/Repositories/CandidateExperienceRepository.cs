@@ -20,7 +20,7 @@ namespace Candidatos.Infra.Data.Repositories
 
         public async Task<IEnumerable<CandidateExperience>> GetCandidateExperiencesAsync()
         {
-            var candidateExperience = await _context.CandidateExperiences.AsNoTracking().ToListAsync();
+            var candidateExperience = await _context.CandidateExperiences.AsNoTracking().Include(x => x.Candidate).ToListAsync();
             if (candidateExperience == null || candidateExperience.Count == 0) return null;
 
             return candidateExperience;

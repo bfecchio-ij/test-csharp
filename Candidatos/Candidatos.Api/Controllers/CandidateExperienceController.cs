@@ -41,15 +41,25 @@ namespace Candidatos.Api.Controllers
         }
 
         [HttpPut("{id}")]
-        public async void Put(int id, [FromBody] CandidateExperienceCommandDTO value)
+        public async Task<IActionResult> Put(int id, [FromBody] CandidateExperienceCommandDTO value)
         {
+            value.IdCandidateExperience = id;
+            
+            var ce = await _candidateAppService.GetByIdAsync(id);
+            if (ce == null) return NoContent();
+            
             await _candidateAppService.UpdateAsync(value);
+            return Ok();
         }
 
         [HttpDelete("{id}")]
-        public async void Delete(int? id)
+        public async Task<IActionResult> Delete(int? id)
         {
+            var ce = await _candidateAppService.GetByIdAsync(id.Value);
+            if (ce == null) return NoContent();
+
             await _candidateAppService.RemoveAsync(id.Value);
+            return Ok();
         }
     }
 }

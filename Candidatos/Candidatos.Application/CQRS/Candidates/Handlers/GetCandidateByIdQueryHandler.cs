@@ -20,7 +20,7 @@ namespace Candidatos.Application.CQRS.Candidates.Handlers
         public async Task<CandidateDTO> Handle(GetCandidateByIdQuery request, CancellationToken cancellationToken)
         {
             var candidate = await _repository.GetByIdAsync(request.IdCandidate);
-            if (candidate == null) throw new Exception("the candidate is null");
+            if (candidate == null) return null;
 
             return new CandidateDTO
             {
