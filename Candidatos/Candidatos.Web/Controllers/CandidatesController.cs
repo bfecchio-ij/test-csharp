@@ -19,7 +19,7 @@ namespace Candidatos.Web.Controllers
             var client = new RestClient($"{baseURL}/Candidate");
             var request = new RestRequest(Method.GET);
             var response = await client.ExecuteAsync(request);
-
+            
             result = JsonConvert.DeserializeObject<List<CandidateDTO>>(response.Content);
             return View(result);
         }

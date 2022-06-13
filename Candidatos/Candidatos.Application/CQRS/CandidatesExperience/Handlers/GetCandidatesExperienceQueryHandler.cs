@@ -25,7 +25,7 @@ namespace Candidatos.Application.CQRS.CandidatesExperience.Handlers
         {
             var listResult = new List<CandidateExperienceDTO>();
             var candidatesExp = await _repository.GetCandidateExperiencesAsync();
-            if (candidatesExp == null) return null;
+            if (candidatesExp == null) return listResult;
 
             foreach (var candidateExp in candidatesExp)
             {

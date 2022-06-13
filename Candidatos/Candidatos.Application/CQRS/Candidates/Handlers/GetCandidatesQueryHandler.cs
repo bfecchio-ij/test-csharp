@@ -23,7 +23,7 @@ namespace Candidatos.Application.CQRS.Candidates.Handlers
         {
             var listResult = new List<CandidateDTO>();
             var candidates = await _repository.GetCandidatesAsync();
-            if (candidates == null) throw new Exception("the candidates are null");
+            if (candidates == null) return listResult;
 
             foreach (var candidate in candidates)
             {

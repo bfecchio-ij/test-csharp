@@ -20,7 +20,7 @@ namespace Candidatos.Application.CQRS.CandidatesExperience.Handlers
         public async Task<CandidateExperienceDTO> Handle(GetCandidateExperienceByIdQuery request, CancellationToken cancellationToken)
         {
             var candidateExp = await _repository.GetByIdAsync(request.IdCandidateExperience);
-            if (candidateExp == null) return null;
+            if (candidateExp == null) return new CandidateExperienceDTO();
 
             return new CandidateExperienceDTO
             {
