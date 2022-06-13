@@ -39,6 +39,24 @@ namespace Candidatos.Application.Implementations
             var candidate = await _mediator.Send(q);
             return _mapper.Map<CandidateDTO>(candidate);
         }
+
+        public async Task<bool> GetByEmail(string email)
+        {
+            var q = new GetCandidateByEmailQuery(email);
+            if (q == null) throw new ApplicationException("Error getting candidate");
+
+            var candidate = await _mediator.Send(q);
+            return candidate;
+        }
+
+        public async Task<CandidateDetails> GetByIdWithExperiencesAsync(int? id)
+        {
+            var q = new GetCandidateByIdWithExperiences(id.Value);
+            if (q == null) throw new ApplicationException("Error getting candidate");
+
+            var candidate = await _mediator.Send(q);
+            return _mapper.Map<CandidateDetails>(candidate);
+        }
         
         public async Task CreateAsync(CandidateDTO candidateDTO)
         {

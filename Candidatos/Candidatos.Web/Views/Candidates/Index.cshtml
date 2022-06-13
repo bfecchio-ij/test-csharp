@@ -1,0 +1,67 @@
+﻿@model IEnumerable<Candidatos.Application.DTO.CandidateDTO>
+
+<div class="row mb-3 border-bottom">
+    <div class="col text-center">
+        <h2>
+            Candidates
+            <i class="fas fa-users"></i>
+        </h2>
+    </div>
+</div>
+
+<div class="row mb-1">
+    <div class="col">
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <span class="btn btn-primary">Qtd: @Model.Count().ToString("00")</span>
+            </div>
+            <div>
+                <a class="btn btn-primary" asp-action="Create">
+                    <i class="fas fa-user-plus text-white"></i>
+                    Create new
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <table class="table table-bordered table-hover table-sm">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                    <th>Surname</th>
+                    <th>Email</th>
+                    <th>Birth Date</th>
+                    <th style="width: 280px">#</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Surname</td>
+                        <td>@item.Email</td>
+                        <td>@item.BirthDate.ToShortDateString()</td>
+                        <td class="text-center px-2">
+                            <a asp-action="Edit" asp-route-id="@item.IdCandidate" class="btn btn-sm btn-outline-primary me-2" title="Edit candidate">
+                                <i class="fas fa-user-edit"></i>
+                                edit
+                            </a>
+                            <a asp-action="Remove" asp-route-id="@item.IdCandidate" class="btn btn-sm btn-outline-danger me-2" title="Remove candidate">
+                                <i class="fas fa-user-times"></i>
+                                remove
+                            </a>
+                            <a asp-action="Details" asp-route-id="@item.IdCandidate" class="btn btn-sm btn-outline-success" title="Detailed candidate">
+                                <i class="fas fa-user-clock"></i>
+                                details
+                            </a>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

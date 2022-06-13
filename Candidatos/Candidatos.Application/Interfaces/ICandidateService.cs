@@ -9,7 +9,9 @@ namespace Candidatos.Application.Interfaces
         // queries
         Task<IEnumerable<CandidateDTO>> GetAllAsync();
         Task<CandidateDTO> GetByIdAsync(int? id);
-        
+        Task<CandidateDetails> GetByIdWithExperiencesAsync(int? id);
+        Task<bool> GetByEmail(string email);
+
         // commands
         Task CreateAsync(CandidateDTO candidateDTO);
         Task UpdateAsync(CandidateDTO candidateDTO);

@@ -11,12 +11,7 @@ namespace Candidatos.Infra.Data.Repositories
 {
     public class CandidateExperienceRepository : ICandidateExperienceRepository
     {
-        private readonly JobContext _context;
-
-        public CandidateExperienceRepository(JobContext context)
-        {
-            _context = context;
-        }
+        JobContext _context = new JobContext();
 
         public async Task<IEnumerable<CandidateExperience>> GetCandidateExperiencesAsync()
         {

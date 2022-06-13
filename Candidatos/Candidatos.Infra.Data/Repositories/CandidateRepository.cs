@@ -10,12 +10,7 @@ namespace Candidatos.Infra.Data.Repositories
 {
     public class CandidateRepository : ICandidateRepository
     {
-        private readonly JobContext _context;
-
-        public CandidateRepository(JobContext context)
-        {
-            _context = context;
-        }
+        JobContext _context = new JobContext();
 
         public async Task<IEnumerable<Candidate>> GetCandidatesAsync()
         {
@@ -33,6 +28,22 @@ namespace Candidatos.Infra.Data.Repositories
             return candidate;
         }
         
+        public async Task<Candidate> GetByIdWithExperiencesAsync(int? id)
+        {
+            var candidate = await _context.Candidates.AsNoTracking().Include(x => x.CandidateExperiences).FirstOrDefaultAsync(c => c.IdCandidate == id);
+            if (candidate == null) return null;
+
+            return candidate;
+        }
+
+        public async Task<bool> GetByEmail(string email)
+        {
+            var candidate = await _context.Candidates.AsNoTracking().Include(x => x.CandidateExperiences).FirstOrDefaultAsync(c => c.Email == email);
+            if (candidate.Email == null) return false;
+
+            return true;
+        }
+
         public async Task<Candidate> CreateAsync(Candidate candidate)
         {
             _context.ChangeTracker.Clear();
@@ -58,5 +69,6 @@ namespace Candidatos.Infra.Data.Repositories
             return candidate;
         }
 
+        
     }
 }

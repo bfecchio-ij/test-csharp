@@ -1,0 +1,75 @@
+﻿@model Candidatos.Application.DTO.CandidateExperienceDTO
+
+<div class="row mb-3 border-bottom">
+    <div class="col">
+        <h2>
+            Editing a new experience for @Model.CandidateName
+            <i class="fas fa-user-clock"></i>
+        </h2>
+    </div>
+</div>
+
+<form asp-action="RemoveExp" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input asp-for="IdCandidate" type="hidden" />
+    <input asp-for="IdCandidateExperience" />
+    <input asp-for="CandidateName" type="hidden" />
+    <input asp-for="CandidateSurname" type="hidden" />
+    <input asp-for="CandidateEmail" type="hidden" />
+    <div class="row mb-3">
+        <div class="col-sm-12 col-md-6 col-lg-6 col-xl-6">
+            <div class="form-group">
+                <label asp-for="Company"></label>
+                <input asp-for="Company" class="form-control" disabled>
+                <span asp-validation-for="Company" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3">
+            <div class="form-group">
+                <label asp-for="Job"></label>
+                <input asp-for="Job" class="form-control" disabled>
+                <span asp-validation-for="Job" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-4 col-lg-3 col-xl-3">
+            <div class="form-group">
+                <label asp-for="Salary"></label>
+                <input asp-for="Salary" class="form-control" disabled>
+                <span asp-validation-for="Salary" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-8 col-lg-6 col-xl-6">
+            <div class="form-group">
+                <label asp-for="Description"></label>
+                <input asp-for="Description" class="form-control" disabled>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3">
+            <div class="form-group">
+                <label asp-for="BeginDate"></label>
+                <input asp-for="BeginDate" class="form-control" disabled>
+                <span asp-validation-for="BeginDate" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-lg-3 col-xl-3">
+            <div class="form-group">
+                <label asp-for="EndDate"></label>
+                <input asp-for="EndDate" class="form-control" disabled>
+                <span asp-validation-for="EndDate" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <button type="submit" class="btn btn-danger">
+                <i class="fas fa-user-clock"></i>
+                Remove
+            </button>
+            <a asp-action="Details" asp-route-id="@Model.IdCandidate" class="btn btn-success">
+                <i class="fas fa-arrow-alt-circle-left"></i>
+                Back to List</a>
+        </div>
+    </div>
+</form>

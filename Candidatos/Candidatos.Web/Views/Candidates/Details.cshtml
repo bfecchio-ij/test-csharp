@@ -1,0 +1,95 @@
+﻿@model Candidatos.Application.DTO.CandidateDetails
+
+<div class="row mb-3">
+    <div class="col">
+        <div class="card shadow shadow-sm">
+            <div class="card-header">
+                <div class="d-flex justify-content-between align-items-center">
+                    <h3 class="m-0">
+                        Candidate Details
+                    </h3>
+                    <h3 class="m-0">
+                        <i class="fas fa-user-edit"></i>
+                    </h3>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="list-group mb-2 shadow shadow-sm">
+                    <div class="list-group-item">
+                        <div class="d-flex justify-content-between align-items-center">
+                            <div>
+                                <span class="fw-bolder me-2">Name:</span>@Model.Name
+                            </div>
+                            <div>
+                                <span class="fw-bolder me-2">Surname:</span>@Model.Surname
+                            </div>
+                            <div>
+                                <span class="fw-bolder me-2">Email:</span>@Model.Email
+                            </div>
+                            <div>
+                                <span class="fw-bolder me-2">Birth Date:</span>@Model.BirthDate.ToShortDateString()
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-between align-items-center mb-2">
+                    <div>
+                        <strong>Experiências: </strong>
+                        @Model.Experiences.Count().ToString("00")
+                    </div>
+                    <div>
+                        <a class="btn btn-primary" asp-action="CreateExp" asp-route-id="@Model.IdCandidate">
+                            <i class="fas fa-user-clock"></i>
+                            Create new Experience
+                        </a>
+                    </div>
+                </div>
+
+                <table class="table table-sm table-bordered mb-0">
+                    <thead>
+                        <tr>
+                            <th>Company</th>
+                            <th>Job</th>
+                            <th>Description</th>
+                            <th>Begin Date</th>
+                            <th>End Date</th>
+                            <th style="width: 180px">#</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in @Model.Experiences)
+                        {
+                            <tr>
+                                <td>@item.Company</td>
+                                <td>@item.Job</td>
+                                <td>@item.Description</td>
+                                <td>@item.BeginDate.ToShortDateString()</td>
+                                <td>@item.EndDate?.ToShortDateString()</td>
+                                <td class="text-center px-2">
+                                    <a asp-action="EditExp" asp-route-id="@item.IdCandidateExperience" class="btn btn-sm btn-outline-primary me-2" title="Edit candidate">
+                                        <i class="fas fa-user-clock"></i>
+                                        edit
+                                    </a>
+                                    <a asp-action="RemoveExp" asp-route-id="@item.IdCandidateExperience" class="btn btn-sm btn-outline-danger" title="Remove candidate">
+                                        <i class="fas fa-user-clock"></i>
+                                        remove
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col">
+        <a asp-action="Index" class="btn btn-success">
+            <i class="fas fa-arrow-alt-circle-left"></i>
+            Back to List
+        </a>
+    </div>
+</div>

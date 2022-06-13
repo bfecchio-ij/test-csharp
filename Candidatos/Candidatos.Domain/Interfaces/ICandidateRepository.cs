@@ -9,6 +9,8 @@ namespace Candidatos.Domain.Interfaces
         // queries
         Task<IEnumerable<Candidate>> GetCandidatesAsync();
         Task<Candidate> GetByIdAsync(int? id);
+        Task<Candidate> GetByIdWithExperiencesAsync(int? id);
+        Task<bool> GetByEmail(string email);
 
         // commands
         Task<Candidate> CreateAsync(Candidate candidate);

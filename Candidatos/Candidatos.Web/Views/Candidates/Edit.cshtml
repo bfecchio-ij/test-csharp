@@ -1,0 +1,57 @@
+﻿@model Candidatos.Application.DTO.CandidateDTO
+
+<div class="row mb-3 border-bottom">
+    <div class="col">
+        <h2>
+            Editing the candidate @Model.Name
+            <i class="fas fa-user-edit"></i>
+        </h2>
+    </div>
+</div>
+
+<form asp-action="Edit" method="post">
+    <div asp-validation-summary="All" class="text-danger"></div>
+    <input asp-for="IdCandidate" type="hidden" />
+    <div class="row mb-3">
+        <div class="col-sm-12 col-md-6 col-xl-3">
+            <div class="form-group">
+                <label asp-for="Name"></label>
+                <input asp-for="Name" class="form-control">
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-xl-3">
+            <div class="form-group">
+                <label asp-for="Surname"></label>
+                <input asp-for="Surname" class="form-control">
+                <span asp-validation-for="Surname" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-xl-3">
+            <div class="form-group">
+                <label asp-for="Email"></label>
+                <input asp-for="Email" class="form-control">
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="col-sm-12 col-md-6 col-xl-3">
+            <div class="form-group">
+                <label asp-for="BirthDate"></label>
+                <input asp-for="BirthDate" class="form-control"  >
+                <span asp-validation-for="BirthDate" class="text-danger"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col">
+            <button type="submit" class="btn btn-primary">
+                <i class="fas fa-user-edit"></i>
+                Edit
+            </button>
+            <a asp-action="Index" class="btn btn-success">
+                <i class="fas fa-arrow-alt-circle-left"></i>
+                Back to List</a>
+        </div>
+    </div>
+</form>

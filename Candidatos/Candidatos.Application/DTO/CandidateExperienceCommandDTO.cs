@@ -21,11 +21,14 @@ namespace Candidatos.Application.DTO
         public string Description { get; set; }
 
         [Required(ErrorMessage = "the field {0} is required")]
+        [DataType(DataType.Currency, ErrorMessage = "the field {0} must be a valid value")]
         public decimal Salary { get; set; }
 
         [Required(ErrorMessage = "the field {0} is required")]
+        [DataType(DataType.Date, ErrorMessage = "the field {0} must be a valid value")]
         public DateTime BeginDate { get; set; }
 
+        [DataType(DataType.Date, ErrorMessage = "the field {0} must be a valid value")]
         public DateTime? EndDate { get; set; }
 
         [Required(ErrorMessage = "the field {0} is required")]

@@ -19,8 +19,6 @@ namespace Candidatos.Infra.IoC
             service.AddScoped<ICandidateExperienceService, CandidateExperienceService>();
             service.AddScoped<ICandidateExperienceRepository, CandidateExperienceRepository>();
 
-            service.AddSingleton<JobContext>();
-
             var myHandlers = AppDomain.CurrentDomain.Load("Candidatos.Application");
             service.AddMediatR(myHandlers);
 

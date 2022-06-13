@@ -46,6 +46,22 @@ namespace Candidatos.Api.Controllers
             return Ok(result);
         }
 
+        [HttpGet("byEmail/{email}")]
+        public async Task<bool> Get(string email)
+        {
+            var c = await _candidateService.GetByEmail(email);
+            return c;
+        }
+
+        [HttpGet("Detail/{id}")]
+        public async Task<IActionResult> Detail(int id)
+        {
+            var c = await _candidateService.GetByIdWithExperiencesAsync(id);
+            if (c == null) return NoContent();
+
+            return Ok(c);
+        }
+
         [HttpPost]
         public async void Post([FromBody] CandidateDTO value)
         {
