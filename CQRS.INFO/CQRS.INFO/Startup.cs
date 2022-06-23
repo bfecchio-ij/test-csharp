@@ -1,4 +1,6 @@
 using CQRS.INFO.Models.Data;
+using CQRS.INFO.Services;
+using CQRS.INFO.Services.Interfaces;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -28,8 +30,8 @@ namespace CQRS.INFO
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationContext>(options => options.UseSqlServer(Configuration.GetConnectionString("ConnectionDB")));
-            //services.AddScoped<ICandidateServices, CandidateServices>();
-            //services.AddScoped<ICandidatesExperienceServices, CandidatesExperienceServices>();
+            services.AddScoped<ICandidateServices, CandidateServices>();
+            services.AddScoped<ICandidatesExperienceServices, CandidatesExperienceServices>();
             services.AddMediatR(Assembly.GetExecutingAssembly());
             services.AddControllersWithViews();
         }
@@ -58,7 +60,7 @@ namespace CQRS.INFO
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=Candidates}/{action=Index}/{id?}");
             });
         }
     }
