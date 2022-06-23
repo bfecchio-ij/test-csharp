@@ -25,7 +25,6 @@
     <Folder Include="Commands\ExperienceCommands\" />
     <Folder Include="Queries\CandidateQueries\" />
     <Folder Include="Queries\ExperienceQueries\" />
-    <Folder Include="Services\Interfaces\" />
   </ItemGroup>
 
 </Project>
