@@ -11,6 +11,7 @@ using MediatR;
 using CQRS.INFO.Services.Interfaces;
 using CQRS.INFO.Queries.CandidateQueries;
 using CQRS.INFO.Commands.CandidateCommands;
+using CQRS.INFO.Models.Entities.Core;
 
 namespace CQRS.INFO.Controllers
 {

@@ -15,7 +15,12 @@
             <input type="hidden" asp-for="Id" />
             <div class="form-group">
                 <label asp-for="CandidateId" class="control-label"></label>
-                <select asp-for="CandidateId" class="form-control" asp-items="ViewBag.CandidateId"></select>
+                <select asp-for="CandidateId" class="form-control" asp-items="ViewBag.CandidateId">
+                    @foreach(var item in ViewBag.Candidates)
+                    {
+                        <option value="@item.Id">@item.Name</option>
+                    }
+                </select>
                 <span asp-validation-for="CandidateId" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -40,24 +45,20 @@
             </div>
             <div class="form-group">
                 <label asp-for="BeginDate" class="control-label"></label>
-                <input asp-for="BeginDate" class="form-control" />
+                <input asp-for="BeginDate" class="form-control" type="date"/>
                 <span asp-validation-for="BeginDate" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="EndDate" class="control-label"></label>
-                <input asp-for="EndDate" class="form-control" />
+                <input asp-for="EndDate" class="form-control" type="date"/>
                 <span asp-validation-for="EndDate" class="text-danger"></span>
             </div>
-            <div class="form-group">
-                <label asp-for="InsertDate" class="control-label"></label>
-                <input asp-for="InsertDate" class="form-control" />
-                <span asp-validation-for="InsertDate" class="text-danger"></span>
-            </div>
-            <div class="form-group">
+            
+           @* <div class="form-group">
                 <label asp-for="ModifyDate" class="control-label"></label>
                 <input asp-for="ModifyDate" class="form-control" />
                 <span asp-validation-for="ModifyDate" class="text-danger"></span>
-            </div>
+            </div>*@
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />
             </div>

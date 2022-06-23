@@ -5,7 +5,7 @@ namespace CQRS.INFO.Models.Entities.Core
     public class Entity
     {
         public DateTime InsertDate { get; private set; }
-        public DateTime? ModifyDate { get; private set; }
+        public DateTime? ModifyDate { get; private  set; }
 
         public Entity()
         {

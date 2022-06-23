@@ -24,8 +24,8 @@ namespace CQRS.INFO.Queries.ExperienceQueries
 
             public async Task<IEnumerable<CandidateExperience>> Handle(GetAllExperiencesQuery query, CancellationToken cancellationToken)
             {
-                return await _experienceService.GetListOfExperiences();
-               // return await _context.CandidatesExperiences.Include(p => p.Candidate).ToListAsync();
+               // return await _experienceService.GetListOfExperiences();
+               return await _context.CandidatesExperiences.Include(p => p.Candidate).ToListAsync();
             }
         }
     }

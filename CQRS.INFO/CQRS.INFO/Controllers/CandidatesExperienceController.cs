@@ -38,7 +38,7 @@ namespace CQRS.INFO.Controllers
         // GET: CandidatesExperience/Details/5
         public async Task<IActionResult> Details(int id)
         {
-            return View(await _mediator.Send(new GetCandidateByIdQuery()
+            return View(await _mediator.Send(new GetExperienceByIdQuery()
             {
                 Id = id
 
@@ -59,7 +59,7 @@ namespace CQRS.INFO.Controllers
             LoadViewBags();
             try
             {
-                if (ModelState.IsValid && experienceCommand.BeginDate < experienceCommand.EndDate)
+                if (ModelState.IsValid)
                 {
                     await _mediator.Send(experienceCommand);
                     return RedirectToAction(nameof(Index));
@@ -77,7 +77,7 @@ namespace CQRS.INFO.Controllers
         public async Task<IActionResult> Edit(int id)
         {
             LoadViewBags();
-            return View(await _mediator.Send(new GetCandidateByIdQuery()
+            return View(await _mediator.Send(new GetExperienceByIdQuery()
             {
                 Id = id
             }));
