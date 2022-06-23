@@ -11,7 +11,7 @@ namespace InfoJobs.Domain.Entities
 {
     public class CandidateExperience : Base
     {
-        public CandidateExperience(string company, string job, string description, decimal salary, DateTime beginDate, DateTime insertDate, Guid idCandidates)
+        public CandidateExperience(string company, string job, string description, decimal salary, DateTime beginDate, DateTime endDate, Guid idCandidates)
         {
             AddNotifications(
             new Contract<Notification>()
@@ -21,7 +21,6 @@ namespace InfoJobs.Domain.Entities
                 .IsNotEmpty(description, "Description", "The 'Description' field cannot be empty!")
                 .IsNotNull(salary, "Salary", "The 'Salary' field cannot be null!")
                 .IsNotNull(beginDate, "BeginDate", "The 'BeginDate' field cannot be null!")
-                .IsNotNull(insertDate, "InsertDate", "The 'InsertDate' field cannot be null!")
                 .IsNotNull(idCandidates, "IdCandidates", "The 'IdCandidates' field cannot be null!")
             );
 
@@ -30,7 +29,7 @@ namespace InfoJobs.Domain.Entities
             Description = description;
             Salary = salary;
             BeginDate = beginDate;
-            InsertDate = insertDate;
+            EndDate = endDate;
             IdCandidates = idCandidates;
         }
 
@@ -40,7 +39,6 @@ namespace InfoJobs.Domain.Entities
         public decimal Salary { get; private set; }
         public DateTime BeginDate { get; set; }
         public DateTime? EndDate { get; set; }
-        public DateTime InsertDate { get; set; }
         public DateTime? ModifyDate { get; set; }
 
         // FK's
@@ -48,18 +46,29 @@ namespace InfoJobs.Domain.Entities
         public Candidate Candidates { get; set; }
 
 
-        public void UpdateCompany(string company)
+        public void UpdateCompany(Guid idExperience, string company, string job, string description, decimal salary, DateTime beginDate, DateTime endDate)
         {
             AddNotifications(
             new Contract<Notification>()
                 .Requires()
-                .IsNotNull(company, "Company", "The 'Company' field cannot be null!")
+                .IsNotNull(idExperience, "IdExperience", "The 'IdExperience' field cannot be null!")
                 .IsNotEmpty(company, "Company", "The 'Company' field cannot be empty!")
+                .IsNotEmpty(job, "Job", "The 'Job' field cannot be empty!")
+                .IsNotEmpty(description, "Description", "The 'Description' field cannot be empty!")
+                .IsNotNull(salary, "Salary", "The 'Salary' field cannot be null!")
+                .IsNotNull(beginDate, "BeginDate", "The 'BeginDate' field cannot be null!")
             );
 
             if (IsValid)
             {
+                Id = idExperience;
                 Company = company;
+                Job = job;
+                Description = description;
+                Salary = salary;
+                BeginDate = beginDate;
+                EndDate = endDate;
+                ModifyDate = DateTime.Now;
             }
         }
 

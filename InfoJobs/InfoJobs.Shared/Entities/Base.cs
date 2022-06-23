@@ -12,10 +12,10 @@ namespace InfoJobs.Shared.Entities
         protected Base()
         {
             Id = Guid.NewGuid();
-            CreatedDate = DateTime.Now;
+            InsertDate = DateTime.Now;
         }
 
         public Guid Id { get; set; }
-        public DateTime CreatedDate { get; set; }
+        public DateTime InsertDate { get; set; }
     }
 }

@@ -11,33 +11,30 @@ namespace InfoJobs.Domain.Entities
 {
     public class Candidate : Base
     {
-        public Candidate(string name, string surname, DateTime birthdate, string email, DateTime insertDate, DateTime modifyDate)
+        public Candidate(string name, string surname, DateTime birthDate, string email, DateTime modifyDate)
         {
             AddNotifications(
             new Contract<Notification>()
                 .Requires()
                 .IsNotEmpty(name, "Name", "The 'Name' field cannot be empty!")
                 .IsNotEmpty(surname, "Surname", "The 'Surname' field cannot be empty!")
-                .IsNotNull(birthdate, "Birthdate", "The 'Birthdate' field cannot be null!")
+                .IsNotNull(birthDate, "BirthDate", "The 'BirthDate' field cannot be null!")
                 .IsEmail(email, "Email", "Enter a valid email address!")
-                .IsNotNull(insertDate, "InsertDate", "The 'InsertDate' field cannot be null!")
             );
 
             if (IsValid)
             {
                 Name = name;
                 Surname = surname;
-                Birthdate = birthdate;
+                BirthDate = birthDate;
                 Email = email;
-                InsertDate = DateTime.Now;
             }
         }
 
         public string Name { get; private set; }
         public string Surname { get; private set; }
-        public DateTime Birthdate { get; set; }
+        public DateTime BirthDate { get; set; }
         public string Email { get; private set; }
-        public DateTime InsertDate { get; set; }
         public DateTime? ModifyDate { get; set; }
 
         // Compositions
