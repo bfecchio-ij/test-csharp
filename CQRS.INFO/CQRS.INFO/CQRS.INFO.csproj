@@ -21,8 +21,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Commands\CandidateCommands\" />
-    <Folder Include="Commands\ExperienceCommands\" />
     <Folder Include="Queries\CandidateQueries\" />
     <Folder Include="Queries\ExperienceQueries\" />
   </ItemGroup>
