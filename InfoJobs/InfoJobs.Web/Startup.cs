@@ -31,10 +31,11 @@ namespace InfoJobs.Web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
             services.AddDbContext<InfoJobsContext>(x => x.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddDistributedMemoryCache();
-            services.AddScoped(typeof(ICandidateRepository), typeof(CandidateRepository));
-            services.AddScoped(typeof(IExperienceRepository), typeof(ExperienceRepository));
+            //services.AddScoped(typeof(ICandidateRepository), typeof(CandidateRepository));
+            //services.AddScoped(typeof(IExperienceRepository), typeof(ExperienceRepository));
 
             services.AddSession(options =>
             {
@@ -84,6 +85,7 @@ namespace InfoJobs.Web
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
             app.UseHttpsRedirection();
 
             app.UseStaticFiles();
