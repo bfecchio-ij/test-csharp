@@ -14,6 +14,17 @@ namespace CQRS.INFO.Services
         {
             _context = context;
         }
+        public async Task<IEnumerable<Candidate>> GetListOfCandidates()
+        {
+            return await _context.Candidates
+           .ToListAsync();
+        }
+        public async Task<Candidate> GetCandidateById(int id)
+        {
+            return await _context.Candidates
+           .FirstOrDefaultAsync(x => x.Id == id);
+        }
+
         public async Task<Candidate> CreateCandidate(Candidate candidate)
         {
             _context.Candidates.Add(candidate);
@@ -25,18 +36,6 @@ namespace CQRS.INFO.Services
         {
             _context.Candidates.Remove(candidate);
             return await _context.SaveChangesAsync();
-        }
-
-        public async Task<Candidate> GetCandidateById(int id)
-        {
-            return await _context.Candidates
-           .FirstOrDefaultAsync(x => x.Id == id);
-        }
-
-        public async Task<IEnumerable<Candidate>> GetListOfCandidates()
-        {
-            return await _context.Candidates
-           .ToListAsync();
         }
 
         public async Task<int> UpdateCandidate(Candidate candidate)

@@ -24,10 +24,10 @@ namespace CQRS.INFO.Queries.ExperienceQueries
 
             public async Task<CandidateExperience> Handle(GetExperienceByIdQuery query, CancellationToken cancellationToken)
             {
-                return await _experienceService.GetExperienceById(query.Id);
-              //  return await _context.CandidatesExperiences
-              //.Include(p => p.Candidate)
-              //.FirstOrDefaultAsync(m => m.Id == query.Id);
+                //return await _experienceService.GetExperienceById(query.Id);
+               return await _context.CandidatesExperiences
+                  .Include(p => p.Candidate)
+                  .FirstOrDefaultAsync(m => m.Id == query.Id);//it displays the name of the candidate in the View
             }
         }
     }

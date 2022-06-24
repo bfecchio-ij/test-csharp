@@ -14,6 +14,18 @@ namespace CQRS.INFO.Services
         {
             _context = context;
         }
+
+        public async Task<IEnumerable<CandidateExperience>> GetListOfExperiences()
+        {
+            return await _context.CandidatesExperiences
+           .ToListAsync();
+        }
+        public async Task<CandidateExperience> GetExperienceById(int id)
+        {
+            return await _context.CandidatesExperiences
+           .FirstOrDefaultAsync(x => x.Id == id);
+        }
+       
         public async Task<CandidateExperience> CreateExperience(CandidateExperience experience)
         {
             _context.CandidatesExperiences.Add(experience);
@@ -25,18 +37,6 @@ namespace CQRS.INFO.Services
         {
             _context.CandidatesExperiences.Remove(experience);
             return await _context.SaveChangesAsync();
-        }
-
-        public async Task<CandidateExperience> GetExperienceById(int id)
-        {
-            return await _context.CandidatesExperiences
-           .FirstOrDefaultAsync(x => x.Id == id);
-        }
-
-        public async Task<IEnumerable<CandidateExperience>> GetListOfExperiences()
-        {
-            return await _context.CandidatesExperiences
-           .ToListAsync();
         }
 
         public async Task<int> UpdateExperience(CandidateExperience experience)

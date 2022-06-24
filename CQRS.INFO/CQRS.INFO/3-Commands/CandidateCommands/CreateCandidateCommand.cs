@@ -35,8 +35,7 @@ namespace CQRS.INFO.Commands.CandidateCommands
 
             if (await _candidateService.GetEmailChecked(candidate.Email) != null)
             {
-                throw new Exception(
-                "This email already exists.");
+                throw new Exception("This email already exists.");
             }
 
             return await _candidateService.CreateCandidate(candidate);

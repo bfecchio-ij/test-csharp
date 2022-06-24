@@ -65,7 +65,7 @@ namespace CQRS.INFO.Controllers
                     return RedirectToAction(nameof(Index));
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ModelState.AddModelError("", "Unable to save changes.");
             }
@@ -85,13 +85,9 @@ namespace CQRS.INFO.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,CandidateId,Company,Job,Description,Salary,BeginDate,EndDate,InsertDate,ModifyDate")] CandidateExperience candidateExperience)
+        public async Task<IActionResult> Edit(int id, CandidateExperience candidateExperience)
         {
             LoadViewBags();
-            if (id != candidateExperience.Id)
-            {
-                return NotFound();
-            }
 
             if (ModelState.IsValid && candidateExperience.BeginDate < candidateExperience.EndDate)
             {
@@ -127,22 +123,11 @@ namespace CQRS.INFO.Controllers
                     Id = id
                 });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ModelState.AddModelError("", "Unable to delete. ");
             }
 
-            return RedirectToAction(nameof(Index));
-        }
-
-        // POST: CandidatesExperience/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var candidateExperience = await _context.CandidatesExperiences.FindAsync(id);
-            _context.CandidatesExperiences.Remove(candidateExperience);
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 

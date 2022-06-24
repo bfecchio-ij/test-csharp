@@ -21,7 +21,8 @@ namespace CQRS.INFO.Controllers
         private readonly ApplicationContext _context;
         private readonly ICandidateServices _candidateService;
 
-        public CandidatesController(IMediator mediator, ApplicationContext context, ICandidateServices candidateService)
+        public CandidatesController(IMediator mediator, ApplicationContext context, 
+            ICandidateServices candidateService)
         {
             _mediator = mediator;
             _context = context;
@@ -63,7 +64,7 @@ namespace CQRS.INFO.Controllers
                 }
 
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ModelState.AddModelError("", "Unable to save changes.");
             }
@@ -96,7 +97,7 @@ namespace CQRS.INFO.Controllers
                     return RedirectToAction(nameof(Index));
                 }
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ModelState.AddModelError("", "Unable to save changes.");
             }
@@ -113,22 +114,11 @@ namespace CQRS.INFO.Controllers
                     Id = id
                 });
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ModelState.AddModelError("", "Unable to delete. ");
             }
 
-            return RedirectToAction(nameof(Index));
-        }
-
-        // POST: Candidate/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
-        {
-            var candidate = await _context.Candidates.FindAsync(id);
-            _context.Candidates.Remove(candidate);
-            await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
