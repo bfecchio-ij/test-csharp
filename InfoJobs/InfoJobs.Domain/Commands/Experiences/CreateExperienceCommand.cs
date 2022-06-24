@@ -13,7 +13,7 @@ namespace InfoJobs.Domain.Commands.Experiences
     {
         public CreateExperienceCommand() { }
 
-        public CreateExperienceCommand(string company, string job, string description, decimal salary, DateTime beginDate, DateTime? endDate, Guid idCandidates)
+        public CreateExperienceCommand(string company, string job, string description, decimal salary, DateTime beginDate, DateTime endDate, Guid idCandidates)
         {
             Company = company;
             Job = job;
@@ -29,7 +29,7 @@ namespace InfoJobs.Domain.Commands.Experiences
         public string Description { get; set; }
         public decimal Salary { get; set; }
         public DateTime BeginDate { get; set; }
-        public DateTime? EndDate { get; set; }
+        public DateTime EndDate { get; set; }
         public Guid IdCandidates { get; set; }
 
         public void Validate()

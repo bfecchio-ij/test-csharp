@@ -38,26 +38,28 @@ namespace InfoJobs.Domain.Entities
         public string Description { get; private set; }
         public decimal Salary { get; private set; }
         public DateTime BeginDate { get; set; }
-        public DateTime? EndDate { get; set; }
-        public DateTime? ModifyDate { get; set; }
+        public DateTime EndDate { get; set; }
+        public DateTime ModifyDate { get; set; }
 
         // FK's
         public Guid IdCandidates { get; set; }
         public Candidate Candidates { get; set; }
 
 
-        public void UpdateCompany(Guid idExperience, string company, string job, string description, decimal salary, DateTime beginDate, DateTime endDate)
+        public void UpdateExperience(Guid idExperience, string company, string job, string description, decimal salary, DateTime beginDate, DateTime endDate)
         {
             AddNotifications(
-            new Contract<Notification>()
-                .Requires()
-                .IsNotNull(idExperience, "IdExperience", "The 'IdExperience' field cannot be null!")
-                .IsNotEmpty(company, "Company", "The 'Company' field cannot be empty!")
-                .IsNotEmpty(job, "Job", "The 'Job' field cannot be empty!")
-                .IsNotEmpty(description, "Description", "The 'Description' field cannot be empty!")
-                .IsNotNull(salary, "Salary", "The 'Salary' field cannot be null!")
-                .IsNotNull(beginDate, "BeginDate", "The 'BeginDate' field cannot be null!")
+              new Contract<Notification>()
+              .Requires()
+              .IsNotNull(idExperience, "idExperience", "The 'idExperience' field cannot be null")
+              .IsNotEmpty(company, "Company", "The 'Company' field cannot be empty!")
+              .IsNotEmpty(job, "Job", "The 'Job' field cannot be empty!")
+              .IsNotEmpty(description, "Description", "The 'Description' field cannot be empty!")
+              .IsNotNull(salary, "Salary", "The 'Salary' field cannot be null!")
+              .IsNotNull(beginDate, "BeginDate", "The 'BeginDate' field cannot be null!")
+              .IsNotNull(endDate, "EndDate", "The 'EndDate' field cannot be null!")
             );
+
 
             if (IsValid)
             {

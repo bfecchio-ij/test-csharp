@@ -11,7 +11,7 @@ namespace InfoJobs.Domain.Entities
 {
     public class Candidate : Base
     {
-        public Candidate(string name, string surname, DateTime birthDate, string email, DateTime modifyDate)
+        public Candidate(string name, string surname, DateTime birthDate, string email)
         {
             AddNotifications(
             new Contract<Notification>()
@@ -35,7 +35,7 @@ namespace InfoJobs.Domain.Entities
         public string Surname { get; private set; }
         public DateTime BirthDate { get; set; }
         public string Email { get; private set; }
-        public DateTime? ModifyDate { get; set; }
+        public DateTime ModifyDate { get; set; }
 
         // Compositions
         public IReadOnlyCollection<CandidateExperience> Experiences { get; private set; }
@@ -51,17 +51,24 @@ namespace InfoJobs.Domain.Entities
         //    }
         //}
 
-        public void UpdateEmail(string email)
+        public void UpdateCandidate(string name, string surname, DateTime birthDate, string email)
         {
             AddNotifications(
             new Contract<Notification>()
                 .Requires()
+                .IsNotEmpty(name, "Name", "The 'Name' field cannot be empty!")
+                .IsNotEmpty(surname, "Surname", "The 'Surname' field cannot be empty!")
+                .IsNotNull(birthDate, "BirthDate", "The 'BirthDate' field cannot be null!")
                 .IsEmail(email, "Email", "Enter a valid email address!")
             );
 
             if (IsValid)
             {
+                Name = name;
+                Surname = surname;
+                BirthDate = birthDate;
                 Email = email;
+                ModifyDate = DateTime.Now;
             }
         }
 

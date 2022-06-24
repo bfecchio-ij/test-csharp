@@ -23,5 +23,7 @@ namespace InfoJobs.Domain.Interfaces
 
         CandidateExperience SearchById(Guid id);
 
+        CandidateExperience SearchByCandidateId(Guid id);
+
     }
 }
