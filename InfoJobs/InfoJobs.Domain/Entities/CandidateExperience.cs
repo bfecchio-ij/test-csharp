@@ -11,7 +11,7 @@ namespace InfoJobs.Domain.Entities
 {
     public class CandidateExperience : Base
     {
-        public CandidateExperience(string company, string job, string description, decimal salary, DateTime beginDate, DateTime endDate, Guid idCandidates)
+        public CandidateExperience(string company, string job, string description, decimal salary, DateTime beginDate, DateTime? endDate, Guid idCandidate)
         {
             AddNotifications(
             new Contract<Notification>()
@@ -21,7 +21,7 @@ namespace InfoJobs.Domain.Entities
                 .IsNotEmpty(description, "Description", "The 'Description' field cannot be empty!")
                 .IsNotNull(salary, "Salary", "The 'Salary' field cannot be null!")
                 .IsNotNull(beginDate, "BeginDate", "The 'BeginDate' field cannot be null!")
-                .IsNotNull(idCandidates, "IdCandidates", "The 'IdCandidates' field cannot be null!")
+                .IsNotNull(idCandidate, "IdCandidates", "The 'IdCandidates' field cannot be null!")
             );
 
             Company = company;
@@ -30,7 +30,8 @@ namespace InfoJobs.Domain.Entities
             Salary = salary;
             BeginDate = beginDate;
             EndDate = endDate;
-            IdCandidates = idCandidates;
+            ModifyDate = null;
+            IdCandidate = idCandidate;
         }
 
         public string Company { get; private set; }
@@ -38,15 +39,16 @@ namespace InfoJobs.Domain.Entities
         public string Description { get; private set; }
         public decimal Salary { get; private set; }
         public DateTime BeginDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public DateTime ModifyDate { get; set; }
+        public DateTime? EndDate { get; set; }
+        public DateTime? ModifyDate { get; set; }
 
         // FK's
-        public Guid IdCandidates { get; set; }
+        public Guid IdCandidate { get; set; }
         public Candidate Candidates { get; set; }
 
 
-        public void UpdateExperience(Guid idExperience, string company, string job, string description, decimal salary, DateTime beginDate, DateTime endDate)
+        // Configs:
+        public void UpdateExperience(Guid idExperience, string company, string job, string description, decimal salary, DateTime beginDate, DateTime? endDate)
         {
             AddNotifications(
               new Contract<Notification>()
@@ -57,7 +59,6 @@ namespace InfoJobs.Domain.Entities
               .IsNotEmpty(description, "Description", "The 'Description' field cannot be empty!")
               .IsNotNull(salary, "Salary", "The 'Salary' field cannot be null!")
               .IsNotNull(beginDate, "BeginDate", "The 'BeginDate' field cannot be null!")
-              .IsNotNull(endDate, "EndDate", "The 'EndDate' field cannot be null!")
             );
 
 

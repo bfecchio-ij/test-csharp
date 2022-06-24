@@ -13,11 +13,19 @@ namespace InfoJobs.Domain.Commands.Candidates
     {
         public UpdateCandidateCommand() { }
 
+        public UpdateCandidateCommand(Guid id, string name, string surname, DateTime birthDate)
+        {
+            Id = id;
+            Name = name;
+            Surname = surname;
+            BirthDate = birthDate;
+            ModifyDate = DateTime.Now;
+        }
+
         public Guid Id { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
         public DateTime BirthDate { get; set; }
-        public string Email { get; set; }
         public DateTime ModifyDate { get; set; }
 
         public void Validate()
@@ -29,7 +37,7 @@ namespace InfoJobs.Domain.Commands.Candidates
                 .IsNotEmpty(Name, "Name", "The 'Name' field cannot be empty!")
                 .IsNotEmpty(Surname, "Surname", "The 'Surname' field cannot be empty!")
                 .IsNotNull(BirthDate, "BirthDate", "The 'BirthDate' field cannot be null!")
-                .IsEmail(Email, "Email", "Enter a valid email address!")
+                .IsNotNull(ModifyDate, "ModifyDate", "The 'ModifyDate' field cannot be null!")
             );
         }
     }

@@ -68,7 +68,7 @@ namespace InfoJobs.Infra.Data.Contexts
             modelBuilder.Entity<CandidateExperience>()
                         .HasOne<Candidate>(x => x.Candidates)
                         .WithMany(x => x.Experiences)
-                        .HasForeignKey(x => x.IdCandidates);
+                        .HasForeignKey(x => x.IdCandidate);
 
             // Adding Company
             modelBuilder.Entity<CandidateExperience>().Property(x => x.Company).HasColumnType("VARCHAR(100)");

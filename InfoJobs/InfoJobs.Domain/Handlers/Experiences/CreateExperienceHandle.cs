@@ -30,7 +30,7 @@ namespace InfoJobs.Domain.Handlers.Experiences
                 return new GenericCommandResult(false, "Correctly enter experience data", command.Notifications);
             }
 
-            CandidateExperience newExperience = new CandidateExperience(command.Company, command.Job, command.Description, command.Salary, command.BeginDate, command.EndDate, command.IdCandidates);
+            CandidateExperience newExperience = new CandidateExperience(command.Company, command.Job, command.Description, command.Salary, command.BeginDate, command.EndDate, command.IdCandidate);
 
             if (!newExperience.IsValid)
             {

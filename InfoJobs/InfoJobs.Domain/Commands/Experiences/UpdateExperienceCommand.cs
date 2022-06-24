@@ -13,7 +13,7 @@ namespace InfoJobs.Domain.Commands.Experiences
     {
         public UpdateExperienceCommand() { }
 
-        public UpdateExperienceCommand(Guid idExperience, string company, string job, string description, decimal salary, DateTime beginDate, DateTime endDate)
+        public UpdateExperienceCommand(Guid idExperience, string company, string job, string description, decimal salary, DateTime beginDate, DateTime? endDate)
         {
             Id = idExperience;
             Company = company;
@@ -31,9 +31,8 @@ namespace InfoJobs.Domain.Commands.Experiences
         public string Description { get; set; }
         public decimal Salary { get; set; }
         public DateTime BeginDate { get; set; }
-        public DateTime EndDate { get; set; }
+        public DateTime? EndDate { get; set; }
         public DateTime ModifyDate { get; set; }
-        public Guid IdCandidates { get; set; }
 
         public void Validate()
         {
@@ -46,7 +45,6 @@ namespace InfoJobs.Domain.Commands.Experiences
                 .IsNotEmpty(Description, "Description", "The 'Description' field cannot be empty!")
                 .IsNotNull(Salary, "Salary", "The 'Salary' field cannot be null!")
                 .IsNotNull(BeginDate, "BeginDate", "The 'BeginDate' field cannot be null!")
-                .IsNotNull(EndDate, "EndDate", "The 'EndDate' field cannot be null!")
             );
         }
     }

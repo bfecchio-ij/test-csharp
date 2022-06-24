@@ -28,6 +28,7 @@ namespace InfoJobs.Domain.Entities
                 Surname = surname;
                 BirthDate = birthDate;
                 Email = email;
+                ModifyDate = null;
             }
         }
 
@@ -35,23 +36,15 @@ namespace InfoJobs.Domain.Entities
         public string Surname { get; private set; }
         public DateTime BirthDate { get; set; }
         public string Email { get; private set; }
-        public DateTime ModifyDate { get; set; }
+        public DateTime? ModifyDate { get; set; }
 
         // Compositions
         public IReadOnlyCollection<CandidateExperience> Experiences { get; private set; }
         private List<CandidateExperience> _experiences { get; set; }
 
-        // Configs
 
-        //public void RegisterExperience(CandidateExperience experience)
-        //{
-        //    if (IsValid)
-        //    {
-        //        _experiences.Add(experience);
-        //    }
-        //}
-
-        public void UpdateCandidate(string name, string surname, DateTime birthDate, string email)
+        // Configs:
+        public void UpdateCandidate(string name, string surname, DateTime birthDate)
         {
             AddNotifications(
             new Contract<Notification>()
@@ -59,7 +52,6 @@ namespace InfoJobs.Domain.Entities
                 .IsNotEmpty(name, "Name", "The 'Name' field cannot be empty!")
                 .IsNotEmpty(surname, "Surname", "The 'Surname' field cannot be empty!")
                 .IsNotNull(birthDate, "BirthDate", "The 'BirthDate' field cannot be null!")
-                .IsEmail(email, "Email", "Enter a valid email address!")
             );
 
             if (IsValid)
@@ -67,7 +59,6 @@ namespace InfoJobs.Domain.Entities
                 Name = name;
                 Surname = surname;
                 BirthDate = birthDate;
-                Email = email;
                 ModifyDate = DateTime.Now;
             }
         }

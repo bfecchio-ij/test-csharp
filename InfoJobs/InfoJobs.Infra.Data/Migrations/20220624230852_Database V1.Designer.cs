@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InfoJobs.Infra.Data.Migrations
 {
     [DbContext(typeof(InfoJobsContext))]
-    [Migration("20220624133401_Database V4")]
-    partial class DatabaseV4
+    [Migration("20220624230852_Database V1")]
+    partial class DatabaseV1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -40,7 +40,7 @@ namespace InfoJobs.Infra.Data.Migrations
                         .HasColumnType("DATETIME")
                         .HasDefaultValueSql("GETDATE()");
 
-                    b.Property<DateTime>("ModifyDate")
+                    b.Property<DateTime?>("ModifyDate")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("DATETIME")
                         .HasDefaultValueSql("GETDATE()");
@@ -82,10 +82,10 @@ namespace InfoJobs.Infra.Data.Migrations
                         .HasMaxLength(4000)
                         .HasColumnType("VARCHAR(4000)");
 
-                    b.Property<DateTime>("EndDate")
+                    b.Property<DateTime?>("EndDate")
                         .HasColumnType("DATETIME");
 
-                    b.Property<Guid>("IdCandidates")
+                    b.Property<Guid>("IdCandidate")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("InsertDate")
@@ -98,7 +98,7 @@ namespace InfoJobs.Infra.Data.Migrations
                         .HasMaxLength(100)
                         .HasColumnType("VARCHAR(100)");
 
-                    b.Property<DateTime>("ModifyDate")
+                    b.Property<DateTime?>("ModifyDate")
                         .HasColumnType("DATETIME");
 
                     b.Property<decimal>("Salary")
@@ -106,7 +106,7 @@ namespace InfoJobs.Infra.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("IdCandidates");
+                    b.HasIndex("IdCandidate");
 
                     b.ToTable("Experiences");
                 });
@@ -115,7 +115,7 @@ namespace InfoJobs.Infra.Data.Migrations
                 {
                     b.HasOne("InfoJobs.Domain.Entities.Candidate", "Candidates")
                         .WithMany("Experiences")
-                        .HasForeignKey("IdCandidates")
+                        .HasForeignKey("IdCandidate")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

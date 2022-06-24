@@ -13,7 +13,7 @@ namespace InfoJobs.Domain.Commands.Experiences
     {
         public CreateExperienceCommand() { }
 
-        public CreateExperienceCommand(string company, string job, string description, decimal salary, DateTime beginDate, DateTime? endDate, Guid idCandidates, DateTime modifyDate)
+        public CreateExperienceCommand(string company, string job, string description, decimal salary, DateTime beginDate, DateTime? endDate, Guid idCandidate)
         {
             Company = company;
             Job = job;
@@ -21,8 +21,7 @@ namespace InfoJobs.Domain.Commands.Experiences
             Salary = salary;
             BeginDate = new DateTime();
             EndDate = new DateTime();
-            IdCandidates = idCandidates;
-            ModifyDate = DateTime.Now;
+            IdCandidate = idCandidate;
         }
 
         public string Company { get; set; }
@@ -30,9 +29,8 @@ namespace InfoJobs.Domain.Commands.Experiences
         public string Description { get; set; }
         public decimal Salary { get; set; }
         public DateTime BeginDate { get; set; }
-        public DateTime EndDate { get; set; }
-        public Guid IdCandidates { get; set; }
-        public DateTime ModifyDate { get; set; }
+        public DateTime? EndDate { get; set; }
+        public Guid IdCandidate { get; set; }
 
         public void Validate()
         {
@@ -44,8 +42,7 @@ namespace InfoJobs.Domain.Commands.Experiences
                 .IsNotEmpty(Description, "Description", "The 'Description' field cannot be empty!")
                 .IsNotNull(Salary, "Salary", "The 'Salary' field cannot be null!")
                 .IsNotNull(BeginDate, "BeginDate", "The 'BeginDate' field cannot be null!")
-                .IsNotNull(IdCandidates, "IdCandidates", "The 'IdCandidates' field cannot be null!")
-                .IsNotNull(ModifyDate, "ModifyDate", "The 'ModifyDate' field cannot be null!")
+                .IsNotNull(IdCandidate, "IdCandidates", "The 'IdCandidates' field cannot be null!")
             );
         }
     }

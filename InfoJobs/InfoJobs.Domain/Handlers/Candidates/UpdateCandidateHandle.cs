@@ -37,7 +37,7 @@ namespace InfoJobs.Domain.Handlers.Candidates
                 return new GenericCommandResult(false, "There is no candidates with this id", command.Notifications);
             }
 
-            oldCandidate.UpdateCandidate(command.Name, command.Surname, command.BirthDate, command.Email);
+            oldCandidate.UpdateCandidate(command.Name, command.Surname, command.BirthDate);
 
             _candidateRepository.Update(oldCandidate);
 

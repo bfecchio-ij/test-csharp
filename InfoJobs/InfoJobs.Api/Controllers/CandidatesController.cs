@@ -29,8 +29,13 @@ namespace InfoJobs.Api.Controllers
 
         [Route("delete")]
         [HttpDelete]
-        public GenericCommandResult DeleteCandidate(DeleteCandidateCommand command, [FromServices] DeleteCandidateHandle handle)
+        public GenericCommandResult DeleteCandidate(Guid idCandidate, [FromServices] DeleteCandidateHandle handle)
         {
+            var command = new DeleteCandidateCommand
+            {
+                Id = idCandidate
+            };
+
             return (GenericCommandResult)handle.Handler(command);
         }
 
