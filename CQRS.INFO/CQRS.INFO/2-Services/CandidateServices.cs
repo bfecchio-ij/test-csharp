@@ -3,6 +3,7 @@ using CQRS.INFO.Models.Entities;
 using CQRS.INFO.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace CQRS.INFO.Services
@@ -43,11 +44,10 @@ namespace CQRS.INFO.Services
             _context.Candidates.Update(candidate);
             return await _context.SaveChangesAsync();
         }
-        public async Task<Candidate> GetEmailChecked(string email)
+        public async Task<Candidate> CheckIfEmailIsUnique(string email)
         {
             return await _context.Candidates.FirstOrDefaultAsync(_ => _.Email == email);
 
         }
-
     }
 }

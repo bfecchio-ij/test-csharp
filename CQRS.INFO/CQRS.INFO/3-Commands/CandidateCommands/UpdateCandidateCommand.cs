@@ -35,7 +35,23 @@ namespace CQRS.INFO.Commands.CandidateCommands
                 candidate.BirthDate = command.BirthDate;
                 candidate.Email = command.Email;
 
+                var usedCandidatesEmail = await _candidateService.CheckIfEmailIsUnique(candidate.Email);
+
+                if (usedCandidatesEmail != null && usedCandidatesEmail.Id != candidate.Id)
+                {
+                    if (!usedCandidatesEmail.Equals(candidate))
+                    {
+                        AddError("The candidate's e-mail has already being used.");
+                        //throw new Exception("This email is  already being used.");
+                    }
+                }
+
                 return await _candidateService.UpdateCandidate(candidate);
+            }
+
+            private void AddError(string errorMessage)
+            {
+                throw new NotImplementedException();
             }
         }
     }

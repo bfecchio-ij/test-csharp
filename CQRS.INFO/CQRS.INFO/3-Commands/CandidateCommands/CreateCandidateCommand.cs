@@ -1,5 +1,6 @@
 ﻿using CQRS.INFO.Models.Entities;
 using CQRS.INFO.Services.Interfaces;
+using FluentValidation.Results;
 using MediatR;
 using System;
 using System.Threading;
@@ -33,12 +34,18 @@ namespace CQRS.INFO.Commands.CandidateCommands
                 Email = command.Email
             };
 
-            if (await _candidateService.GetEmailChecked(candidate.Email) != null)
+            if (await _candidateService.CheckIfEmailIsUnique(candidate.Email) != null)
             {
-                throw new Exception("This email already exists.");
+                AddError("The customer e-mail has already been taken.");
+                //throw new Exception("This email already exists.");
             }
 
             return await _candidateService.CreateCandidate(candidate);
+        }
+
+        private void AddError(string errorMessage)
+        {
+            throw new NotImplementedException();
         }
     }
 }

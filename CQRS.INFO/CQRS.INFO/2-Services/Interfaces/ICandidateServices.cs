@@ -11,6 +11,6 @@ namespace CQRS.INFO.Services.Interfaces
         Task<Candidate> CreateCandidate(Candidate candidate);
         Task<int> UpdateCandidate(Candidate candidate);
         Task<int> DeleteCandidate(Candidate candidate);
-        Task<Candidate> GetEmailChecked(string email);
+        Task<Candidate> CheckIfEmailIsUnique(string email);
     }
 }

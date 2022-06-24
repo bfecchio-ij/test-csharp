@@ -12,6 +12,7 @@ namespace CQRS.INFO.Models.Entities
         public string Surname { get; set; }
         public DateTime BirthDate { get; set; }
 
+        [Required]
         [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", ErrorMessage = "Entre com um email válido")]
         public string Email { get; set; }
 

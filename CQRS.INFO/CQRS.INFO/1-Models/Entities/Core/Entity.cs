@@ -14,9 +14,9 @@ namespace CQRS.INFO.Models.Entities.Core
             ModifyDate = date;
         }
 
-        public void Update()
-        {
-            ModifyDate = DateTime.Now;
-        }
+        //public void Update()
+        //{
+        //    ModifyDate = DateTime.Now;
+        //}
     }
 }
