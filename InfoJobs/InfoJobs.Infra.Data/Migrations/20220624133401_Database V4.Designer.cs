@@ -4,14 +4,16 @@ using InfoJobs.Infra.Data.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace InfoJobs.Infra.Data.Migrations
 {
     [DbContext(typeof(InfoJobsContext))]
-    partial class InfoJobsContextModelSnapshot : ModelSnapshot
+    [Migration("20220624133401_Database V4")]
+    partial class DatabaseV4
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

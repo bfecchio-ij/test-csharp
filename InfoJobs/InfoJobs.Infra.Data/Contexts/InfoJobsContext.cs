@@ -38,7 +38,7 @@ namespace InfoJobs.Infra.Data.Contexts
             modelBuilder.Entity<Candidate>().Property(x => x.Surname).IsRequired();
 
             // Adding BirthDate
-            modelBuilder.Entity<Candidate>().Property(x => x.BirthDate).HasColumnType("DATETIME");
+            modelBuilder.Entity<Candidate>().Property(x => x.BirthDate).HasColumnType("DATE");
 
             // Adding Email
             modelBuilder.Entity<Candidate>().Property(x => x.Email).HasColumnType("VARCHAR(250)");
@@ -52,6 +52,7 @@ namespace InfoJobs.Infra.Data.Contexts
 
             // Adding ModifyDate
             modelBuilder.Entity<Candidate>().Property(x => x.ModifyDate).HasColumnType("DATETIME");
+            modelBuilder.Entity<Candidate>().Property(x => x.ModifyDate).HasDefaultValueSql("GETDATE()");
             #endregion
 
 

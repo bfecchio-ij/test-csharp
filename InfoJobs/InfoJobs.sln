@@ -9,7 +9,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfoJobs.Shared", "InfoJobs
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfoJobs.Infra.Data", "InfoJobs.Infra.Data\InfoJobs.Infra.Data.csproj", "{A5801135-1903-4574-9754-F64C85DE6F41}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoJobs.Web", "InfoJobs.Web\InfoJobs.Web.csproj", "{1ADB0531-D759-4D54-89ED-6EF5479F3ACF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "InfoJobs.Web", "InfoJobs.Web\InfoJobs.Web.csproj", "{1ADB0531-D759-4D54-89ED-6EF5479F3ACF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfoJobs.Api", "InfoJobs.Api\InfoJobs.Api.csproj", "{4FD6B340-C6EF-4048-A722-03C7A4FEE9AF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{1ADB0531-D759-4D54-89ED-6EF5479F3ACF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1ADB0531-D759-4D54-89ED-6EF5479F3ACF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1ADB0531-D759-4D54-89ED-6EF5479F3ACF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4FD6B340-C6EF-4048-A722-03C7A4FEE9AF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4FD6B340-C6EF-4048-A722-03C7A4FEE9AF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4FD6B340-C6EF-4048-A722-03C7A4FEE9AF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4FD6B340-C6EF-4048-A722-03C7A4FEE9AF}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
