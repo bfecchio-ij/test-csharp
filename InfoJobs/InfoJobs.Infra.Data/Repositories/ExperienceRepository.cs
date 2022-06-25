@@ -28,9 +28,9 @@ namespace InfoJobs.Infra.Data.Repositories
             _ctx.SaveChanges();
         }
 
-        public void Delete(Guid id)
+        public void Delete(CandidateExperience exp)
         {
-            _ctx.Experiences.Remove(SearchById(id));
+            _ctx.Experiences.Remove(SearchById(exp.Id));
             _ctx.SaveChanges();
         }
 
@@ -50,16 +50,16 @@ namespace InfoJobs.Infra.Data.Repositories
                 .ToList();
         }
 
-        public CandidateExperience SearchById(Guid id)
+        public CandidateExperience SearchById(Guid? id)
         {
-            return _ctx.Experiences
-                .FirstOrDefault(x => x.Id == id);
+            return _ctx.Experiences.FirstOrDefault(x => x.Id == id);
         }
 
-        public CandidateExperience SearchByCandidateId(Guid idCandidate)
+        public List<CandidateExperience> SearchExperienceByCandidate(Guid? idCandidate)
         {
-            return _ctx.Experiences
-                .FirstOrDefault(e => e.Candidates.Id == idCandidate);
+            var experiences = _ctx.Experiences.Where(x => x.IdCandidate == idCandidate).ToList();
+
+            return experiences;
         }
     }
 }

@@ -39,6 +39,11 @@ namespace InfoJobs.Domain.Handlers.Candidates
 
             oldCandidate.UpdateCandidate(command.Name, command.Surname, command.BirthDate);
 
+            if (!oldCandidate.IsValid)
+            {
+                return new GenericCommandResult(false, "Enter the data correctly", oldCandidate.Notifications);
+            }
+
             _candidateRepository.Update(oldCandidate);
 
             return new GenericCommandResult(true, "Candidate updated successfully!", oldCandidate);

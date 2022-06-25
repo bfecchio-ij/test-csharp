@@ -28,9 +28,11 @@ namespace InfoJobs.Infra.Data.Repositories
             _ctx.SaveChanges();
         }
 
-        public void Delete(Guid id)
+        public void Delete(Candidate candidate)
         {
-            _ctx.Candidates.Remove(SearchById(id));
+            var searchCandidate = SearchById(candidate.Id);
+
+            _ctx.Candidates.Remove(searchCandidate);
             _ctx.SaveChanges();
         }
 
@@ -50,7 +52,7 @@ namespace InfoJobs.Infra.Data.Repositories
                 .ToList();
         }
 
-        public Candidate SearchById(Guid id)
+        public Candidate SearchById(Guid? id)
         {
             return _ctx.Candidates
                 .Include(x => x.Experiences)

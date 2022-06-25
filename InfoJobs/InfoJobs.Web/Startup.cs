@@ -110,7 +110,7 @@ namespace InfoJobs.Web
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=InfoJobs}/{action=List}/{id?}");
             });
         }
     }

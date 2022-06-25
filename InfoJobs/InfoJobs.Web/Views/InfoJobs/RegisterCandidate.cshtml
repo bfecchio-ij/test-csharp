@@ -1,0 +1,101 @@
+﻿@model InfoJobs.Domain.Entities.Candidate
+
+@{
+    ViewData["Title"] = "Register new candidates";
+}
+
+<h1>Register new candidates</h1>
+
+<h4>Candidates</h4>
+<hr />
+
+<div class="container mt-5">
+    <div class="card">
+        <form asp-action="List">
+            <!-- Card header -->
+            <div class="card-header">
+                <h4 class="fw-bold">Settings</h4>
+            </div>
+
+            <!-- Card body -->
+            <div class="card-body">
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="mb-3">
+                            <label asp-for="Name" for="exampleInput4" class="form-label">Name</label>
+                            <input asp-for="Name" type="text" class="form-control" id="nameInput" />
+                            <span asp-validation-for="Name" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="mb-3">
+                            <label asp-for="Surname" for="exampleInput4" class="form-label">Surname</label>
+                            <input asp-for="Surname" type="text" class="form-control" id="surnameInput" />
+                            <span asp-validation-for="Surname" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-6">
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <div class="mb-3">
+                            <label asp-for="Email" for="exampleInput4" class="form-label">Email</label>
+                            <input asp-for="Email" type="text" class="form-control" id="emailInput" />
+                            <span asp-validation-for="Email" class="text-danger"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="mb-3">
+                            <label asp-for="BirthDate" class="control-label"></label>
+                            <input asp-for="BirthDate" type="date" id="dateInput" min="2000-01-01" class="form-control" />
+                            <span asp-validation-for="BirthDate" class="text-danger"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Card footer -->
+            <div class="card-footer">
+                <button class="btn btn-danger" asp-action="List">Cancel</button>
+                <button type="submit" id="createCandidate" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
+
+@section Scripts{
+    <script>
+        $("#createCandidate").click(function () {
+            var candidateContent = {
+                Name: $("#nameInput").val(),
+                Surname: $('#surnameInput').val(),
+                Email: $("#emailInput").val(),
+                Birthdate: $("#dateInput").val()
+            }
+         var URL = '@Url.Action("CreateCandidate")'
+                $.ajax({
+                    url: URL,
+                    type: "POST",
+                    data: candidateContent,
+                    success: function (dados) {
+                        $("#nameInput").val('')
+                        $("#surnameInput").val('')
+                        $("#emailInput").val('')
+                        $("#dateInput").val('')
+                    }
+                });
+
+
+        });
+
+    </script>
+}

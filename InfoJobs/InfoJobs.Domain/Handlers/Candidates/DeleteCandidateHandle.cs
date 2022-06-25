@@ -36,7 +36,7 @@ namespace InfoJobs.Domain.Handlers.Candidates
                 return new GenericCommandResult(false, "Candidate not found", command.Notifications);
             }
 
-            _candidateRepository.Delete(searchedCandidate.Id);
+            _candidateRepository.Delete(searchedCandidate);
 
             return new GenericCommandResult(false, "Candidate deleted successfully!", "");
         }

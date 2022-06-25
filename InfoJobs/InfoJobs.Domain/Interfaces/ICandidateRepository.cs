@@ -12,7 +12,7 @@ namespace InfoJobs.Domain.Interfaces
         // Commands:
         void Add(Candidate candidate);
 
-        void Delete(Guid id);
+        void Delete(Candidate candidate);
 
         void Update(Candidate candidate);
 
@@ -21,7 +21,7 @@ namespace InfoJobs.Domain.Interfaces
         // Queries:
         IEnumerable<Candidate> List();
 
-        Candidate SearchById(Guid id);
+        Candidate SearchById(Guid? id);
 
         Candidate SearchByEmail(string email);
     }

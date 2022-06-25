@@ -36,7 +36,7 @@ namespace InfoJobs.Domain.Handlers.Experiences
                 return new GenericCommandResult(false, "Experience not found", command.Notifications);
             }
 
-            _experienceRepository.Delete(searchedExperience.Id);
+            _experienceRepository.Delete(searchedExperience);
 
             return new GenericCommandResult(false, "Experience deleted successfully!", "");
         }

@@ -12,7 +12,7 @@ namespace InfoJobs.Domain.Interfaces
         // Commands:
         void Add(CandidateExperience exp);
 
-        void Delete(Guid id);
+        void Delete(CandidateExperience exp);
 
         void Update(CandidateExperience exp);
 
@@ -21,9 +21,9 @@ namespace InfoJobs.Domain.Interfaces
         // Queries:
         IEnumerable<CandidateExperience> List();
 
-        CandidateExperience SearchById(Guid id);
+        CandidateExperience SearchById(Guid? id);
 
-        CandidateExperience SearchByCandidateId(Guid id);
+        List<CandidateExperience> SearchExperienceByCandidate(Guid? idCandidate);
 
     }
 }
