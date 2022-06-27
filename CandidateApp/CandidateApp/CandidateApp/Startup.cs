@@ -1,5 +1,7 @@
 using CandidateApp.Application.Commands.Requests;
+using CandidateApp.Domain.Interfaces;
 using CandidateApp.Infra.Data;
+using CandidateApp.Infra.Data.Repositories;
 using MediatR;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -30,12 +32,17 @@ namespace CandidateApp
         {
             services.AddControllersWithViews();
             services.AddMediatR(AppDomain.CurrentDomain.Load("CandidateApp.Application"));
+            //services.AddAutoMapper(AppDomain.CurrentDomain.Load("CandidateApp.Application"));
+
+
+            services.AddScoped<ICandidateRepository, CandidateRepository>();
+
 
             services.AddDbContext<CandidateDBContext>(options =>
             options.UseSqlServer(
-            Configuration.GetConnectionString("DefaultConnection"),
-            o => o.MigrationsAssembly("CandidateApp"))
-    );
+                Configuration.GetConnectionString("DefaultConnection"),
+                o => o.MigrationsAssembly("CandidateApp"))
+            );
 
         }
 

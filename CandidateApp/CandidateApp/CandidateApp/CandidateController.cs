@@ -25,7 +25,7 @@ namespace CandidateApp
 
             _mediator.Send(request);
 
-            return StatusCode(201, "Candidate created");
+            return StatusCode(201);
         }
 
         [HttpPut]

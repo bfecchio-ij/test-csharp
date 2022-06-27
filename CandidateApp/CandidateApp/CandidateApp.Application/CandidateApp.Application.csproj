@@ -17,4 +17,8 @@
     <Folder Include="Commands\CandidateExperience\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CandidateApp.Domain\CandidateApp.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -7,16 +7,32 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using CandidateApp.Domain.Interfaces;
+
 
 namespace CandidateApp.Application.Commands.Handlers
 {
-    public class CreateCandidateHandler : IRequestHandler<CreateCandidateRequest, bool>
+    public class CreateCandidateHandler :  IRequestHandler<CreateCandidateRequest, bool>
     {
+        private readonly ICandidateRepository _candidateRepository;
+
+        public CreateCandidateHandler(ICandidateRepository candidateRepository)
+        {
+            this._candidateRepository = candidateRepository;
+        }
         public Task<bool> Handle(CreateCandidateRequest request, CancellationToken cancellationToken)
         {
-            var result = true;
+            var candidate =
+                new Domain.Entities.Candidate(request.Name,
+                                            request.Surname,
+                                            request.Birthdate,
+                                            request.Email);
 
-            return Task.FromResult(result);
+
+            _candidateRepository.Create(candidate);
+
+
+            return Task.FromResult(true);
         }
 
     }

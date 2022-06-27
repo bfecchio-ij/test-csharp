@@ -20,6 +20,7 @@ namespace CandidateApp.Application.Commands.Requests
         public string Surname { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
+        [Range(typeof(DateTime), "1/1/1900", "1/12/2022", ErrorMessage = "O campo {0} tem ser entre {1} e {2}")]
         public DateTime Birthdate { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
