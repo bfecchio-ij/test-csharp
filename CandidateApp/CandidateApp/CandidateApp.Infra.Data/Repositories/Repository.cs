@@ -111,6 +111,9 @@ namespace CandidateApp.Infra.Data.Repositories
         {
             try
             {
+                var _entry = _context.Entry(model);
+                _dbSet.Remove(model);
+                _entry.State = EntityState.Deleted;
                 return Save() > 0;
             }
             catch (Exception)
@@ -182,7 +185,7 @@ namespace CandidateApp.Infra.Data.Repositories
         {
             try
             {
-                return _dbSet.FirstOrDefault(where);
+                return _dbSet.AsNoTracking().FirstOrDefault(where);
             }
             catch (Exception)
             {

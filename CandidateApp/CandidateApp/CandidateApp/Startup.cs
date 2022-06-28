@@ -32,7 +32,7 @@ namespace CandidateApp
         {
             services.AddControllersWithViews();
             services.AddMediatR(AppDomain.CurrentDomain.Load("CandidateApp.Application"));
-            //services.AddAutoMapper(AppDomain.CurrentDomain.Load("CandidateApp.Application"));
+            services.AddAutoMapper(AppDomain.CurrentDomain.Load("CandidateApp.Application"));
 
 
             services.AddScoped<ICandidateRepository, CandidateRepository>();

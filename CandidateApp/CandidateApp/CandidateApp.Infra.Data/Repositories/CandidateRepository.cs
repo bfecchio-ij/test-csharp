@@ -19,22 +19,13 @@ namespace CandidateApp.Infra.Data.Repositories
 
         public Candidate Get(Guid id)
         {
-            return context.Set<Candidate>().AsNoTracking().Where(c => c.Id == id).Include(x => x.CandidateExperiences).FirstOrDefault();
+
+            return Find(c => c.Id == id);
         }
 
         public IEnumerable<Candidate> GetAll()
         {
-            return context.Set<Candidate>().AsNoTracking().Include(x => x.CandidateExperiences).ToList();
-        }
-
-        public void Add(Candidate entity)
-        {
-            context.Set<Candidate>().Add(entity);
-        }
-
-        public void Update(Candidate entity)
-        {
-            context.Set<Candidate>().Update(entity);
+            return Query(c => c.Id != Guid.Empty).ToList();
         }
 
         public void Delete(Candidate entity)

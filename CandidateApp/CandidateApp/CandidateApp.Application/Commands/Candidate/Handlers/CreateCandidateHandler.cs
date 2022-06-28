@@ -31,7 +31,6 @@ namespace CandidateApp.Application.Commands.Handlers
 
             _candidateRepository.Create(candidate);
 
-
             return Task.FromResult(true);
         }
 

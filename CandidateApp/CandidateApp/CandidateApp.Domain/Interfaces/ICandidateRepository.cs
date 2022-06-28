@@ -13,10 +13,5 @@ namespace CandidateApp.Domain.Interfaces
 
         IEnumerable<Candidate> GetAll();
 
-        void Add(Candidate entity);
-
-        void Update(Candidate entity);
-
-        void Delete(Candidate entity);
     }
 }
