@@ -36,7 +36,7 @@ namespace CandidateApp
 
 
             services.AddScoped<ICandidateRepository, CandidateRepository>();
-
+            services.AddScoped<ICandidateExperienceRepository, CandidateExperienceRepository>();
 
             services.AddDbContext<CandidateDBContext>(options =>
             options.UseSqlServer(

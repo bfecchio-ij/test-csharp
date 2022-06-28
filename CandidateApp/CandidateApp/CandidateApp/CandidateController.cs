@@ -35,7 +35,9 @@ namespace CandidateApp
         {
             if (!ModelState.IsValid) return StatusCode(400);
 
-            _mediator.Send(request);
+            var command = _mediator.Send(request);
+            if (!command.Result)
+                return StatusCode(400, "Candidato não encontrado.");
 
             return StatusCode(200, "Candidate updated");
         }

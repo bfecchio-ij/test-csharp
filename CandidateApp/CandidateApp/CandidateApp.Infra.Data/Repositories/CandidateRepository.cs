@@ -11,26 +11,25 @@ namespace CandidateApp.Infra.Data.Repositories
 {
     public class CandidateRepository : Repository<Candidate>, ICandidateRepository
     {
-        private readonly CandidateDBContext context;
+        private readonly CandidateDBContext _context;
 
         public CandidateRepository(CandidateDBContext context) : base(context)
         {
+            _context = context;
         }
+
+
 
         public Candidate Get(Guid id)
         {
 
-            return Find(c => c.Id == id);
+            return _context.Set<Candidate>().AsNoTracking().Where(c => c.Id == id).Include(x => x.CandidateExperiences).FirstOrDefault();
         }
 
         public IEnumerable<Candidate> GetAll()
         {
-            return Query(c => c.Id != Guid.Empty).ToList();
+            return _context.Set<Candidate>().AsNoTracking().Include(x => x.CandidateExperiences).ToList();
         }
 
-        public void Delete(Candidate entity)
-        {
-            context.Set<Candidate>().Remove(entity);
-        }
     }
 }

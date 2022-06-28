@@ -21,7 +21,7 @@ namespace CandidateApp.Infra.Data.Mapping
             builder.HasIndex(t => t.Email).IsUnique();
             builder.Property(t => t.InsertDate).HasColumnType("datetime").IsRequired();
             builder.Property(t => t.ModifyDate).HasColumnType("datetime").IsRequired(false);
-            builder.HasMany(t => t.CandidateExperiences).WithOne(t => t.Candidate).HasForeignKey(t => t.CandidateId);
+            //builder.HasMany(t => t.CandidateExperiences).WithOne(t => t.Candidate).HasForeignKey(t => t.CandidateId);
         }
     }
 }

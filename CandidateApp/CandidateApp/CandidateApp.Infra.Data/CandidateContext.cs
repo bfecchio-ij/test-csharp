@@ -13,9 +13,9 @@ namespace CandidateApp.Infra.Data
         
         public CandidateDBContext(DbContextOptions options) : base(options) { }
 
-        public DbSet<Domain.Entities.Candidate> Candidates { get; set; }
+        public DbSet<Candidate> Candidates { get; set; }
 
-        public DbSet<Domain.Entities.CandidateExperience> CandidateExperiences { get; set; }
+        public DbSet<CandidateExperience> CandidateExperiences { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

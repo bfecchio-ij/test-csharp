@@ -23,6 +23,9 @@ namespace CandidateApp.Application.Commands.Candidate.Handlers
 
             var candidate = _candidateRepository.Get(request.Id);
 
+            if (candidate == null)
+                return Task.FromResult(false);
+
             var candidateUpdated = new Domain.Entities.Candidate(request.Id,
                                             request.Name,
                                             request.Surname,
@@ -33,9 +36,8 @@ namespace CandidateApp.Application.Commands.Candidate.Handlers
 
             _candidateRepository.Update(candidateUpdated);
 
-            var result = true;
-
-            return Task.FromResult(result);
+            
+            return Task.FromResult(true);
         }
 
     }

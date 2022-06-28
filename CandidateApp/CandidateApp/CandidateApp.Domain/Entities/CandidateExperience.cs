@@ -27,7 +27,7 @@ namespace CandidateApp.Domain.Entities
 
         public Guid CandidateId { get; private set; }
 
-        public Domain.Entities.Candidate Candidate { get; private set; }
+        //public Candidate Candidate { get; private set; }
 
         public CandidateExperience()
         { }
