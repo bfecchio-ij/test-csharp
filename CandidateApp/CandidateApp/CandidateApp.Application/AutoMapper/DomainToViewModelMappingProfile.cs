@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using CandidateApp.Application.Querys.Candidate;
+using CandidateApp.Application.Querys.CandidateExperience;
 using CandidateApp.Domain.Entities;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ namespace CandidateApp.Application.AutoMapper
             CreateMap<Candidate, GetCandidateViewModel>();
 
             CreateMap<Candidate, GetAllCandidatesViewModel>();
+            CreateMap<CandidateExperience, GetCandidateExperienceViewModel>();
         }
     }
 }

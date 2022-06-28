@@ -32,5 +32,7 @@ namespace CandidateApp.Application.Commands.Candidate.Requests
         public DateTime BeginDate { get; set; }
 
         public DateTime? EndDate { get; set; }
+
+        public Guid CandidateId { get; set; }
     }
 }

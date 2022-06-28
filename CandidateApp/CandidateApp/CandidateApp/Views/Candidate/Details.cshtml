@@ -1,0 +1,117 @@
+﻿@using CandidateApp.Domain.Entities
+@model CandidateApp.Application.Querys.Candidate.GetCandidateViewModel
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h4>Detalhes do Candidato</h4>
+<hr />
+
+<div>
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Id)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Id)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Surname)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Surname)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Birthdate)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Birthdate)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Email)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Email)
+        </dd>
+    </dl>
+</div>
+
+<div>
+    <h4>Experiencias do Candidato</h4>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    Company
+                </th>
+                <th>
+                    Job
+                </th>
+                <th>
+                    Description
+                </th>
+                <th>
+                    Salary
+                </th>
+                <th>
+                    Begin Date
+                </th>
+                <th>
+                    End Date
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.CandidateExperiences)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Company)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Job)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Description)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Salary)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.BeginDate)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.EndDate)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Atualizar Experiencia", "EditCandidateExperience", new CandidateExperience{
+                    Id = item.Id,
+                    Company = item.Company,
+                    Job = item.Job,
+                    Description = item.Description,
+                    Salary = item.Salary,
+                    BeginDate = item.BeginDate,
+                    EndDate = item.EndDate,
+                    CandidateId = item.CandidateId
+                    })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+
+</div>
+<div>
+    @Html.ActionLink("Editar Candidato", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Adicionar Experiencia", "CreateExperience", new { id = Model.Id })
+    <hr />
+    <a asp-action="Index">Voltar Para Candidates</a>
+</div>

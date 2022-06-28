@@ -9,23 +9,23 @@ namespace CandidateApp.Domain.Entities
 {
     public class CandidateExperience : Entity
     {
-        public string Company { get; private set; }
+        public string Company { get; set; }
 
-        public string Job { get; private set; }
+        public string Job { get; set; }
 
-        public string Description { get; private set; }
+        public string Description { get; set; }
 
-        public decimal Salary { get; private set; }
+        public decimal Salary { get; set; }
 
-        public DateTime BeginDate { get; private set; }
+        public DateTime BeginDate { get; set; }
 
-        public DateTime? EndDate { get; private set; }
+        public DateTime? EndDate { get; set; }
 
-        public DateTime InsertDate { get; private set; }
+        public DateTime InsertDate { get; set; }
 
-        public DateTime? ModifyDate { get; private set; }
+        public DateTime? ModifyDate { get; set; }
 
-        public Guid CandidateId { get; private set; }
+        public Guid CandidateId { get; set; }
 
         //public Candidate Candidate { get; private set; }
 

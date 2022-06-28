@@ -33,5 +33,14 @@ namespace CandidateApp.Application.Commands.Requests
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
         public Guid CandidateId { get; set; }
+
+
+        public CreateCandidateExperienceRequest(Guid CandidateId)
+        {
+            this.CandidateId = CandidateId;
+            this.BeginDate =  DateTime.Now;
+            this.EndDate = DateTime.Now;
+        }
+
     }
 }

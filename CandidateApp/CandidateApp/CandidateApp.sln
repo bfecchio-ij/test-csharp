@@ -4,14 +4,17 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.1.32328.378
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CandidateApp", "CandidateApp\CandidateApp.csproj", "{95F5AED5-46E7-4000-8520-102B9992F52C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{004408C4-808C-4965-BC32-66F0D50A3973} = {004408C4-808C-4965-BC32-66F0D50A3973}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandidateApp.Application", "CandidateApp.Application\CandidateApp.Application.csproj", "{938071DE-A159-4F80-AAA0-A7EA971A8AD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CandidateApp.Application", "CandidateApp.Application\CandidateApp.Application.csproj", "{938071DE-A159-4F80-AAA0-A7EA971A8AD7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandidateApp.Domain", "CandidateApp.Domain\CandidateApp.Domain.csproj", "{004408C4-808C-4965-BC32-66F0D50A3973}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CandidateApp.Domain", "CandidateApp.Domain\CandidateApp.Domain.csproj", "{004408C4-808C-4965-BC32-66F0D50A3973}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandidateApp.Infra.Data", "CandidateApp.Infra.Data\CandidateApp.Infra.Data.csproj", "{CA2F1DE1-26F4-4C78-BD68-CEAFBE3DD109}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CandidateApp.Infra.Data", "CandidateApp.Infra.Data\CandidateApp.Infra.Data.csproj", "{CA2F1DE1-26F4-4C78-BD68-CEAFBE3DD109}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CandidateApp.Domain.Core", "CandidateApp.Domain.Core\CandidateApp.Domain.Core.csproj", "{0393123B-2EE3-4B22-83B5-67B1B11480C9}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CandidateApp.Domain.Core", "CandidateApp.Domain.Core\CandidateApp.Domain.Core.csproj", "{0393123B-2EE3-4B22-83B5-67B1B11480C9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

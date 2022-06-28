@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace CandidateApp.Application.Querys.Candidate
 {
-    public class GetAllCandidatesViewModel
+    public class GetCandidateViewModel
     {
         public Guid Id { get; set; }
 
@@ -18,6 +18,7 @@ namespace CandidateApp.Application.Querys.Candidate
         public DateTime Birthdate { get; set; }
 
         public string Email { get; set; }
+
         public List<Domain.Entities.CandidateExperience> CandidateExperiences { get; set; }
     }
 }
