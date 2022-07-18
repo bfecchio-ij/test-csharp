@@ -58,7 +58,7 @@ namespace CandidateJob
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Jobs}/{action=jobs}/{id?}");
+                    pattern: "{controller=Candidates}/{action=Index}/{id?}");
             });
         }
     }
