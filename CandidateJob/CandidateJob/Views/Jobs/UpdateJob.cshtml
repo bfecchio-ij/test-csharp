@@ -1,17 +1,18 @@
 ﻿@model CandidateJob.Models.Job
 
 @{
-    ViewData["Title"] = "CreateExperience";
+    ViewData["Title"] = "UpdateJob";
 }
 
-<h1>CreateExperience</h1>
+<h1>UpdateJob</h1>
 
 <h4>Job</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="CreateExperience">
+        <form asp-action="UpdateJob">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="IdCandidateExperience" />
             <div class="form-group">
                 <input type="hidden" asp-for="IdCandidate" />
             </div>
@@ -46,14 +47,24 @@
                 <span asp-validation-for="EndDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <label asp-for="InsertDate" class="control-label"></label>
+                <input asp-for="InsertDate" class="form-control" />
+                <span asp-validation-for="InsertDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ModifyDate" class="control-label"></label>
+                <input asp-for="ModifyDate" class="form-control" />
+                <span asp-validation-for="ModifyDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
 
 <div>
-    <a class="nav-link text-dark" asp-area="" asp-controller="Jobs" asp-action="Jobs">Back to List</a>
+    <a asp-controller="Jobs" asp-action="Jobs">Back to List</a>
 </div>
 
 @section Scripts {
